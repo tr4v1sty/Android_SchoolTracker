@@ -151,7 +151,7 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             DatabaseConnection datasource = new DatabaseConnection(this);
             datasource.open();
             datasource.deleteAssessment(assessmentId);
-            datasource.close();
+            DatabaseConnection.databaseHelper.close();
             finish();
 
             Toast.makeText(this, "Assessment was deleted", Toast.LENGTH_SHORT).show();
@@ -196,7 +196,8 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             datasource.updateAssessment(assessment);
         }
 
-        datasource.close();
+
+        DatabaseConnection.databaseHelper.close();
         finish();
     }
 }

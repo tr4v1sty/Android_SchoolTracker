@@ -24,7 +24,7 @@
         android:onClick="saveNote"
         android:text="@string/save"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="12sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView4"

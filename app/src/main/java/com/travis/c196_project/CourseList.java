@@ -80,7 +80,7 @@ public class CourseList extends ListActivity {
         DatabaseConnection datasource = new DatabaseConnection(this);
         datasource.open();
         List<Course> listValue = datasource.getCourses(termId);
-        datasource.close();
+        DatabaseConnection.databaseHelper.close();
         ArrayAdapter<Course> adapter = new ArrayAdapter<>(this,
                 R.layout.list_items, listValue);
         setListAdapter(adapter);

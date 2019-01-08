@@ -36,7 +36,7 @@ public class NotesActivity extends MainActivity {
             //Assign to proper controls
             ptNotesName.setText(cm.getCourseNotesTitle());
             etNotesMultiText.setText(cm.getCourseNotesText());
-            datasource.close();
+            DatabaseConnection.databaseHelper.close();
         }
     }
 
@@ -75,7 +75,7 @@ public class NotesActivity extends MainActivity {
         DatabaseConnection datasource = new DatabaseConnection(this);
         datasource.open();
         datasource.updateNotes(courseId, notesName, notesBody);
-        datasource.close();
+        DatabaseConnection.databaseHelper.close();
         finish();
     }
 }

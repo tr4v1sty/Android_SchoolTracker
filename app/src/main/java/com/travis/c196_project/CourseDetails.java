@@ -235,7 +235,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             DatabaseConnection datasource = new DatabaseConnection(this);
             datasource.open();
             datasource.deleteCourse(courseId);
-            datasource.close();
+            DatabaseConnection.databaseHelper.close();
             finish();
 
             Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
@@ -340,7 +340,8 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         } else {
             datasource.updateCourse(course);
         }
-        datasource.close();
+
+        DatabaseConnection.databaseHelper.close();
         finish();
     }
 }

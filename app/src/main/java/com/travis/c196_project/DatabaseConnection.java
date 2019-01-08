@@ -12,7 +12,7 @@ import java.util.List;
 public class DatabaseConnection {
 
     private SQLiteDatabase database;
-    private SQLiteOpenHelper databaseHelper;
+    static SQLiteOpenHelper databaseHelper;
 
 
     private static final String [] columns_terms = {
@@ -65,9 +65,9 @@ public class DatabaseConnection {
         database = databaseHelper.getWritableDatabase();
     }
 
-    public void close(){
-        databaseHelper.close();
-    }
+//    public void close(){
+//        databaseHelper.close();
+//    }
 
     public Term createTerm (Term term){
         ContentValues values = new ContentValues();

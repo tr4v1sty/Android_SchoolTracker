@@ -66,7 +66,7 @@ public class TermList extends ListActivity {
         DatabaseConnection datasource = new DatabaseConnection(this);
         datasource.open();
         List<Term> listValue = datasource.getAllTerms();
-        datasource.close();
+        DatabaseConnection.databaseHelper.close();
         ArrayAdapter<Term> adapter = new ArrayAdapter<>(this,
                 R.layout.list_items, listValue);
         setListAdapter(adapter);

@@ -75,7 +75,8 @@ public class AssessmentList extends ListActivity {
         DatabaseConnection datasource = new DatabaseConnection(this);
         datasource.open();
         List<Assessment> listValue = datasource.getAssessments(courseId);
-        datasource.close();
+
+        DatabaseConnection.databaseHelper.close();
         ArrayAdapter<Assessment> adapter = new ArrayAdapter<>(this,
                 R.layout.list_items, listValue);
         setListAdapter(adapter);

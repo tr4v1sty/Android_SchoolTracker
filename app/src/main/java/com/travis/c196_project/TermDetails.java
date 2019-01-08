@@ -166,7 +166,8 @@ public class TermDetails extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Cannot delete a term with courses associated to it", Toast.LENGTH_SHORT).show();
             }
-            datasource.close();
+
+            DatabaseConnection.databaseHelper.close();
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -194,7 +195,8 @@ public class TermDetails extends AppCompatActivity {
             datasource.updateTerm(term);
         }
 
-        datasource.close();
+
+        DatabaseConnection.databaseHelper.close();
         finish();
     }
 
