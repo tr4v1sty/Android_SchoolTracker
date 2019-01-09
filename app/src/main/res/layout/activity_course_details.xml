@@ -33,6 +33,22 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/deleteCourseButtonButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="DELETE"
+                android:onClick="deleteCourse"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                style="@android:style/Widget.DeviceDefault.Button"
+                android:background="@color/colorAccent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
                 android:id="@+id/btnCourseDetailSave"
                 style="@android:style/Widget.DeviceDefault.Button"
                 android:layout_width="wrap_content"
@@ -41,7 +57,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:onClick="saveCourse"
                 android:text="@string/save"
@@ -50,19 +66,16 @@
 
             <EditText
                 android:id="@+id/ptCourseDetailCourseName"
-                android:layout_width="263dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_width="315dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="80dp"
                 android:background="@android:color/white"
                 android:ems="10"
                 android:hint="@string/courseName"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintEnd_toStartOf="@+id/btnCourseDetailSave"
-                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -150,8 +163,8 @@
 
             <Spinner
                 android:id="@+id/spinnerCourseDetailStatus"
-                android:layout_width="280dp"
-                android:layout_height="58dp"
+                android:layout_width="279dp"
+                android:layout_height="43dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
@@ -264,7 +277,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorAccent"
                 android:text="@string/manageAssessments"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailEmail" />
@@ -277,7 +290,7 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:text="@string/notes"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -289,13 +302,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="152dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Start Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.237"
+                app:layout_constraintHorizontal_bias="0.26"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -142,36 +142,36 @@ public class TermDetails extends AppCompatActivity {
         };
     }
 
-    //Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //get id of item selected in menu
-        int id = item.getItemId();
-
-
-        if (id == R.id.menuDelete) {
-            DatabaseConnection datasource = new DatabaseConnection(this);
-            datasource.open();
-            List<Course> listValue = datasource.getCourses(termId);
-            if (listValue.isEmpty()) {
-                datasource.deleteTerm(termId);
-
-            } else {
-                Toast.makeText(this, "Cannot delete a term with courses associated to it", Toast.LENGTH_SHORT).show();
-            }
-
-            DatabaseConnection.databaseHelper.close();
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    //Menu
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        //get id of item selected in menu
+//        int id = item.getItemId();
+//
+//
+//        if (id == R.id.menuDelete) {
+//            DatabaseConnection datasource = new DatabaseConnection(this);
+//            datasource.open();
+//            List<Course> listValue = datasource.getCourses(termId);
+//            if (listValue.isEmpty()) {
+//                datasource.deleteTerm(termId);
+//
+//            } else {
+//                Toast.makeText(this, "Cannot delete a term with courses associated to it", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            DatabaseConnection.databaseHelper.close();
+//            finish();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public void saveTerm(View view) {
         //Create variables
@@ -200,4 +200,18 @@ public class TermDetails extends AppCompatActivity {
         finish();
     }
 
+    public void deleteTerm(View view) {
+        DatabaseConnection datasource = new DatabaseConnection(this);
+        datasource.open();
+        List<Course> listValue = datasource.getCourses(termId);
+        if (listValue.isEmpty()) {
+            datasource.deleteTerm(termId);
+
+        } else {
+            Toast.makeText(this, "Cannot delete a term with courses associated to it", Toast.LENGTH_SHORT).show();
+        }
+
+        DatabaseConnection.databaseHelper.close();
+        finish();
+    }
 }

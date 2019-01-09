@@ -221,27 +221,27 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     }
 
 
-    //Menu
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menuDelete) {
-            DatabaseConnection datasource = new DatabaseConnection(this);
-            datasource.open();
-            datasource.deleteCourse(courseId);
-            DatabaseConnection.databaseHelper.close();
-            finish();
-
-            Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    //Menu
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        int id = item.getItemId();
+//        if (id == R.id.menuDelete) {
+//            DatabaseConnection datasource = new DatabaseConnection(this);
+//            datasource.open();
+//            datasource.deleteCourse(courseId);
+//            DatabaseConnection.databaseHelper.close();
+//            finish();
+//
+//            Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     //button navigation
     public void defineButtons() {
@@ -343,5 +343,17 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
         DatabaseConnection.databaseHelper.close();
         finish();
+    }
+
+    public void deleteCourse(View view) {
+
+        DatabaseConnection datasource = new DatabaseConnection(this);
+        datasource.open();
+        datasource.deleteCourse(courseId);
+        DatabaseConnection.databaseHelper.close();
+        finish();
+
+        Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
+
     }
 }
