@@ -1,14 +1,13 @@
 package com.travis.c196_project;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-public class NotesActivity extends MainActivity {
+public class NotesActivity extends Activity {
 
     public EditText ptNotesName;
     public EditText etNotesMultiText;
@@ -40,32 +39,6 @@ public class NotesActivity extends MainActivity {
         }
     }
 
-    //Appbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_notes, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //get id of item selected in menu
-        int id = item.getItemId();
-
-        if (id == R.id.menuShare) {
-            notesName = ptNotesName.getText().toString();
-            notesBody = etNotesMultiText.getText().toString();
-
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public void saveNote(View view) {
         //Create variables
@@ -77,5 +50,19 @@ public class NotesActivity extends MainActivity {
         datasource.updateNotes(courseId, notesName, notesBody);
         DatabaseConnection.databaseHelper.close();
         finish();
+    }
+
+    public void shareNote(View view) {
+
+        notesName = ptNotesName.getText().toString();
+        notesBody = etNotesMultiText.getText().toString();
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+
     }
 }

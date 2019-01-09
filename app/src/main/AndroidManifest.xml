@@ -22,7 +22,8 @@
         <activity android:name=".CourseList" />
         <activity android:name=".CourseDetails"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NotesActivity" />
+        <activity android:name=".NotesActivity"
+            android:theme="@style/AppTheme.NoActionBar"  />
         <activity android:name=".TermDetails"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".AssessmentList" />
