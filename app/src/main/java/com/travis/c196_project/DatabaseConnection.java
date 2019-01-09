@@ -65,9 +65,6 @@ public class DatabaseConnection {
         database = databaseHelper.getWritableDatabase();
     }
 
-//    public void close(){
-//        databaseHelper.close();
-//    }
 
     public Term createTerm (Term term){
         ContentValues values = new ContentValues();

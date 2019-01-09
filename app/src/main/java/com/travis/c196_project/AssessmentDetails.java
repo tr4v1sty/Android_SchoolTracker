@@ -181,37 +181,4 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-
-
-//    //Appbar
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        //get id of item selected in menu
-//        int id = item.getItemId();
-//
-//        if (id == R.id.menuDelete) {
-//            DatabaseConnection datasource = new DatabaseConnection(this);
-//            datasource.open();
-//            datasource.deleteAssessment(assessmentId);
-//            DatabaseConnection.databaseHelper.close();
-//            finish();
-//
-//            Toast.makeText(this, "Assessment was deleted", Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    //Spinner
-//    @Override
-//    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-//        String sSelected = adapterView.getItemAtPosition(position).toString();
-//    }
-
-
 }

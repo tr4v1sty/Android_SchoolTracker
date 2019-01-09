@@ -57,11 +57,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COURSE_END_COLUMN = "courseEnd";
     public static final String COURSE_STATUS_COLUMN = "courseStatus";
     public static final String COURSE_MENTOR_ONE_COLUMN = "courseMentorOne";
-//    public static final String COURSE_MENTOR_TWO_COLUMN = "courseMentorTwo";
     public static final String COURSE_MENTOR_PHONE_ONE_COLUMN = "courseMentorPhoneOne";
-//    public static final String COURSE_MENTOR_PHONE_TWO_COLUMN = "courseMentorPhoneTwo";
     public static final String COURSE_MENTOR_EMAIL_ONE_COLUMN = "courseMentorEmailOne";
-//    public static final String COURSE_MENTOR_EMAIL_TWO_COLUMN = "courseMentorEmailTwo";
     public static final String COURSE_NOTIFICATION_START_COLUMN = "courseNotificationStart";
     public static final String COURSE_NOTIFICATION_END_COLUMN = "courseNotificationEnd";
     public static final String COURSE_NOTES_TITLE_COLUMN = "courseNotesTitle";
@@ -76,11 +73,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     COURSE_END_COLUMN + " DATE, " +
                     COURSE_STATUS_COLUMN + " TEXT, " +
                     COURSE_MENTOR_ONE_COLUMN + " TEXT, " +
-//                    COURSE_MENTOR_TWO_COLUMN + " TEXT, " +
                     COURSE_MENTOR_PHONE_ONE_COLUMN + " TEXT, " +
-//                    COURSE_MENTOR_PHONE_TWO_COLUMN + " TEXT, " +
                     COURSE_MENTOR_EMAIL_ONE_COLUMN + " TEXT, " +
-//                    COURSE_MENTOR_EMAIL_TWO_COLUMN + " TEXT, " +
                     COURSE_NOTIFICATION_START_COLUMN + " INTEGER, " +
                     COURSE_NOTIFICATION_END_COLUMN + " INTEGER, " +
                     COURSE_NOTES_TITLE_COLUMN + " TEXT, " +

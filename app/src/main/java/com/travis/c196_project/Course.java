@@ -128,12 +128,4 @@ public class Course {
         this.courseMentorEmail = courseMentorEmail;
     }
 
-
-
-
-
-
-
-
-
 }

@@ -36,9 +36,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public EditText ptMentorDetailName;
     public EditText ptMentorDetailPhone;
     public EditText ptMentorDetailEmail;
-//    public EditText ptMentor2DetailName;
-//    public EditText ptMentor2DetailPhone;
-//    public EditText ptMentor2DetailEmail;
 
     //DatePicker
     private EditText mCourseStartDate;
@@ -220,29 +217,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-
-//    //Menu
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        if (id == R.id.menuDelete) {
-//            DatabaseConnection datasource = new DatabaseConnection(this);
-//            datasource.open();
-//            datasource.deleteCourse(courseId);
-//            DatabaseConnection.databaseHelper.close();
-//            finish();
-//
-//            Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
     //button navigation
     public void defineButtons() {
         findViewById(R.id.btnCourseDetailNotes).setOnClickListener(buttonClickListener);
@@ -294,8 +268,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         adapterView.getItemAtPosition(position).toString();
-//        String sSelected = adapterView.getItemAtPosition(position).toString();
-
     }
 
     //Spinner
@@ -314,9 +286,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         String mentorName = ptMentorDetailName.getText().toString();
         String mentorPhone = ptMentorDetailPhone.getText().toString();
         String mentorEmail = ptMentorDetailEmail.getText().toString();
-//        String mentor2Name = ptMentor2DetailName.getText().toString();
-//        String mentor2Phone = ptMentor2DetailPhone.getText().toString();
-//        String mentor2Email = ptMentor2DetailEmail.getText().toString();
 
         //set variables with data
         final Course course = new Course();
@@ -329,9 +298,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         course.setCourseMentorName(mentorName);
         course.setCourseMentorPhone(mentorPhone);
         course.setCourseMentorEmail(mentorEmail);
-//        course.setCourseMentorTwo(mentor2Name);
-//        course.setCourseMentorPhoneTwo(mentor2Phone);
-//        course.setCourseMentorEmailTwo(mentor2Email);
 
         DatabaseConnection datasource = new DatabaseConnection(this);
         datasource.open();

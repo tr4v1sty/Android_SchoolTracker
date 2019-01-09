@@ -60,5 +60,7 @@ public class Assessment {
     public void setAssessmentGoalDate(String assessmentGoalDate) {
         this.assessmentGoalDate = assessmentGoalDate;
     }
-
+    public void setAssessmentNotification(int assessmentNotification) {
+        this.assessmentNotification = assessmentNotification;
+    }
 }
