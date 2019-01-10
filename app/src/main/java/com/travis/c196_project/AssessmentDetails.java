@@ -1,5 +1,4 @@
 package com.travis.c196_project;
-
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -9,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +15,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.Toast;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,12 +26,9 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
     private long assessmentId;
     public EditText assessmentNameEditText;
 
-
     //DatePicker
     private EditText mGoalDate;
     private DatePickerDialog.OnDateSetListener mGoalDateSetListener;
-
-    private static final String TAG = "AssessmentDetails";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +40,25 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         mGoalDate = findViewById(R.id.tvAssessmentDetailGoalDate);
         mTypeSpinner = findViewById(R.id.spinnerAssessmentDetailType);
 
-
         //Spinner
-        ArrayAdapter<CharSequence> adapter;
-        adapter = ArrayAdapter.createFromResource(this, R.array.assessment_type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.assessment_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mTypeSpinner.setAdapter(adapter);
         mTypeSpinner.setOnItemSelectedListener(this);
 
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        Bundle extras;
+        extras = getIntent().getExtras();
+        if (!(null == extras)) {
 
             courseId = extras.getLong("courseId");
             assessmentId = extras.getLong("assessmentId");
-            String assessmentName = extras.getString("assessmentName");
-            String assessmentGoal = extras.getString("assessmentGoalDate");
-            String assessmentType = extras.getString("assessmentType");
+            String assessmentName;
+            assessmentName = extras.getString("assessmentName");
+            String assessmentGoal;
+            assessmentGoal = extras.getString("assessmentGoalDate");
+            String assessmentType;
+            assessmentType = extras.getString("assessmentType");
 
             //Assign to proper controls
             assessmentNameEditText.setText(assessmentName);
@@ -78,15 +73,18 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             @Override
             //get today's date
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                Calendar cal;
+                cal = Calendar.getInstance();
+                int year;
+                year = cal.get(Calendar.YEAR);
+                int month;
+                month = cal.get(Calendar.MONTH);
+                int day;
+                day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        AssessmentDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mGoalDateSetListener,
+                DatePickerDialog dialog;
+                dialog = new DatePickerDialog(AssessmentDetails.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, mGoalDateSetListener,
                         year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -97,49 +95,66 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-                String date = month + "/" + day + "/" + year;
+
+                String date;
+                date = month + "/" + day + "/" + year;
                 mGoalDate.setText(date);
             }
         };
     }
 
-    public void setAlert() {
-        try {
-            AlarmManager mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent mIntent = new Intent(this, NotificationReceiver.class);
+    public void setAlert() throws ParseException {
+        AlarmManager mAlarm;
+        mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-            PendingIntent notifyIntent = PendingIntent.getBroadcast(this, 1, mIntent, 0);
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            String assessmentGoal = mGoalDate.getText().toString();
-            Date goalDate = sdf.parse(assessmentGoal);
+        Intent mIntent;
+        mIntent = new Intent(this, NotificationReceiver.class);
 
-            //initiate a Switch
-            Switch switchGoalAlert = findViewById(R.id.ptAssessmentDetailGoalAlert);
-            // check current state of a Switch (true or false).
-            boolean switchState = switchGoalAlert.isChecked();
+        PendingIntent notifyIntent;
+        notifyIntent = PendingIntent.getBroadcast(this, 1, mIntent, 0);
 
-            if (switchState) {
-                long triggerAtMillis = goalDate.getTime();
-                mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
-            } else {
-                mAlarm.cancel(notifyIntent);
-            }
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String assessmentGoal;
+        assessmentGoal = mGoalDate.getText().toString();
+
+        Date goalDate;
+        goalDate = sdf.parse(assessmentGoal);
+
+        //initiate a Switch
+        Switch switchGoalAlert;
+        switchGoalAlert = findViewById(R.id.ptAssessmentDetailGoalAlert);
+
+        // check current state of a Switch (true or false).
+        boolean switchState;
+        switchState = switchGoalAlert.isChecked();
+
+        if (!switchState) {
+            mAlarm.cancel(notifyIntent);
+        } else {
+            long triggerAtMillis;
+            triggerAtMillis = goalDate.getTime();
+
+            mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
         }
     }
 
-    public void saveAssessment(View view) {
+    public void saveAssessment(View view) throws ParseException {
+
         setAlert();
+
         //Create variables
-        String assessmentName = assessmentNameEditText.getText().toString();
-        String assessmentGoal = mGoalDate.getText().toString();
-        String assessmentType = mTypeSpinner.getSelectedItem().toString();
+        String assessmentName;
+        assessmentName = assessmentNameEditText.getText().toString();
+        String assessmentGoal;
+        assessmentGoal = mGoalDate.getText().toString();
+        String assessmentType;
+        assessmentType = mTypeSpinner.getSelectedItem().toString();
 
         //set variables with data
-        final Assessment assessment = new Assessment();
+        final Assessment assessment;
+        assessment = new Assessment();
         assessment.setCourseId(courseId);
         assessment.setAssessmentId(assessmentId);
         assessment.setAssessmentName(assessmentName);
@@ -147,15 +162,13 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         assessment.setAssessmentType(assessmentType);
 
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
-        datasource.open();
-//        Bundle extras = getIntent().getExtras();
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
 
-        if (assessmentId == 0) {
-            datasource.createAssessment(assessment);
-        } else {
-            datasource.updateAssessment(assessment);
-        }
+        datasource.open();
+
+        if (assessmentId != 0) datasource.updateAssessment(assessment);
+        else datasource.createAssessment(assessment);
 
 
         DatabaseConnection.databaseHelper.close();
@@ -163,13 +176,12 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
     }
 
     public void deleteAssessment(View view) {
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
         datasource.open();
         datasource.deleteAssessment(assessmentId);
         DatabaseConnection.databaseHelper.close();
         finish();
-
-        Toast.makeText(this, "Assessment was deleted", Toast.LENGTH_SHORT).show();
     }
 
 

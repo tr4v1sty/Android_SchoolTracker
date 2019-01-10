@@ -49,7 +49,9 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
-        defineButtons();
+
+        findViewById(R.id.btnCourseDetailNotes).setOnClickListener(buttonClickListener);
+        findViewById(R.id.btnCourseDetailManageAss).setOnClickListener(buttonClickListener);
 
         //variables for controls
         courseNameEditText = findViewById(R.id.ptCourseDetailCourseName);
@@ -59,10 +61,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         ptMentorDetailName = findViewById(R.id.ptMentorDetailName);
         ptMentorDetailPhone = findViewById(R.id.ptMentorDetailPhone);
         ptMentorDetailEmail = findViewById(R.id.ptMentorDetailEmail);
-//        ptMentor2DetailName = findViewById(R.id.ptMentor2DetailName);
-//        ptMentor2DetailPhone = findViewById(R.id.ptMentor2DetailPhone);
-//        ptMentor2DetailEmail = findViewById(R.id.ptMentor2DetailEmail);
-
 
         //Spinner
         ArrayAdapter<CharSequence> adapter;
@@ -71,21 +69,26 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         mStatusSpinner.setAdapter(adapter);
         mStatusSpinner.setOnItemSelectedListener(this);
 
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        Bundle extras;
+        extras = getIntent().getExtras();
+        if (null == extras) {
+        } else {
             termId = extras.getLong("termId");
             courseId = extras.getLong("courseId");
-            String courseName = extras.getString("courseName");
-            String courseStart = extras.getString("courseStart");
-            String courseEnd = extras.getString("courseEnd");
-            String courseStatus = extras.getString("courseStatus");
-            String mentorName = extras.getString("mentorName");
-            String mentorPhone = extras.getString("mentorPhone");
-            String mentorEmail = extras.getString("mentorEmail");
-            String mentor2Name = extras.getString("mentor2Name");
-            String mentor2Phone = extras.getString("mentor2Phone");
-            String mentor2Email = extras.getString("mentor2Email");
+            String courseName;
+            courseName = extras.getString("courseName");
+            String courseStart;
+            courseStart = extras.getString("courseStart");
+            String courseEnd;
+            courseEnd = extras.getString("courseEnd");
+            String courseStatus;
+            courseStatus = extras.getString("courseStatus");
+            String mentorName;
+            mentorName = extras.getString("mentorName");
+            String mentorPhone;
+            mentorPhone = extras.getString("mentorPhone");
+            String mentorEmail;
+            mentorEmail = extras.getString("mentorEmail");
 
             //Assign to proper controls
             courseNameEditText.setText(courseName);
@@ -94,11 +97,10 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             ptMentorDetailName.setText(mentorName);
             ptMentorDetailPhone.setText(mentorPhone);
             ptMentorDetailEmail.setText(mentorEmail);
-//            ptMentor2DetailName.setText(mentor2Name);
-//            ptMentor2DetailPhone.setText(mentor2Phone);
-//            ptMentor2DetailEmail.setText(mentor2Email);
 
-            int statusPosition = adapter.getPosition(courseStatus);
+            int statusPosition;
+            statusPosition = adapter.getPosition(courseStatus);
+
             mStatusSpinner.setSelection(statusPosition);
         }
 
@@ -107,16 +109,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             @Override
             //get today's date
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                Calendar cal;
+                cal = Calendar.getInstance();
+                int year;
+                year = cal.get(Calendar.YEAR);
+                int month;
+                month = cal.get(Calendar.MONTH);
+                int day;
+                day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CourseDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mStartDateSetListener,
-                        year, month, day);
+                DatePickerDialog dialog;
+                dialog = new DatePickerDialog(
+                        CourseDetails.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mStartDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -125,16 +130,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         mCourseEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+                Calendar cal;
+                cal = Calendar.getInstance();
+                int year;
+                year = cal.get(Calendar.YEAR);
+                int month;
+                month = cal.get(Calendar.MONTH);
+                int day;
+                day = cal.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CourseDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mEndDateSetListener,
-                        year, month, day);
+                DatePickerDialog dialog;
+                dialog = new DatePickerDialog(
+                        CourseDetails.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mEndDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -143,9 +151,9 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         mStartDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month = month + 1;
-//                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-                String date = month + "/" + day + "/" + year;
+                month += 1;
+                String date;
+                date = month + "/" + day + "/" + year;
                 mCourseStartDate.setText(date);
             }
         };
@@ -154,73 +162,88 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 //January = 0 need to add 1 to get correct month
-                month = month + 1;
-//                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-                String date = month + "/" + day + "/" + year;
+                month += 1;
+                String date;
+                date = month + "/" + day + "/" + year;
                 mCourseEndDate.setText(date);
             }
         };
     }
 
-    public void setStartAlert() {
-        try {
-            AlarmManager mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent mIntent = new Intent(this, NotificationReceiver.class);
+    public void setStartAlert() throws ParseException {
+        AlarmManager mAlarm;
+        mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-            PendingIntent notifyIntent = PendingIntent.getBroadcast(this, 2, mIntent, 0);
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            String assessmentGoal = mCourseStartDate.getText().toString();
-            Date goalDate = sdf.parse(assessmentGoal);
+        Intent mIntent;
+        mIntent = new Intent(this, NotificationReceiver.class);
 
-            //initiate a Switch
-            Switch switchGoalAlert = findViewById(R.id.ptCourseDetailStartAlert);
-            // check current state of a Switch
-            boolean switchState = switchGoalAlert.isChecked();
+        PendingIntent notifyIntent;
+        notifyIntent = PendingIntent.getBroadcast(this, 2, mIntent, 0);
 
-            if (switchState) {
-                long triggerAtMillis = goalDate.getTime();
-                mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
-            } else {
-                mAlarm.cancel(notifyIntent);
-            }
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+        String assessmentGoal;
+        assessmentGoal = mCourseStartDate.getText().toString();
+
+        Date goalDate;
+        goalDate = sdf.parse(assessmentGoal);
+
+        //initiate a Switch
+        Switch switchGoalAlert;
+        switchGoalAlert = findViewById(R.id.ptCourseDetailStartAlert);
+
+        // check current state of a Switch
+        boolean switchState;
+        if (switchGoalAlert.isChecked()) switchState = true;
+        else switchState = false;
+
+        if (!switchState) {
+            mAlarm.cancel(notifyIntent);
+        } else {
+            long triggerAtMillis;
+            triggerAtMillis = goalDate.getTime();
+            mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
         }
+
     }
 
 
-    public void setEndAlert() {
-        try {
-            AlarmManager mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent mIntent = new Intent(this, NotificationReceiver.class);
+    public void setEndAlert() throws ParseException {
+        AlarmManager mAlarm;
+        mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent mIntent;
+        mIntent = new Intent(this, NotificationReceiver.class);
 
-            PendingIntent notifyIntent = PendingIntent.getBroadcast(this, 3, mIntent, 0);
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            String assessmentGoal = mCourseEndDate.getText().toString();
-            Date goalDate = sdf.parse(assessmentGoal);
+        PendingIntent notifyIntent;
+        notifyIntent = PendingIntent.getBroadcast(this, 3, mIntent, 0);
 
-            //initiate a Switch
-            Switch switchGoalAlert = findViewById(R.id.ptCourseDetailEndAlert);
-            // check current state of a Switch
-            boolean switchState = switchGoalAlert.isChecked();
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("MM/dd/yyyy");
 
-            if (switchState) {
-                long triggerAtMillis = goalDate.getTime();
-                mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
-            } else {
-                mAlarm.cancel(notifyIntent);
-            }
+        String assessmentGoal;
+        assessmentGoal = mCourseEndDate.getText().toString();
 
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Date goalDate;
+        goalDate = sdf.parse(assessmentGoal);
+
+        //initiate a Switch
+        Switch switchGoalAlert;
+        switchGoalAlert = findViewById(R.id.ptCourseDetailEndAlert);
+
+        // check current state of a Switch
+        boolean switchState;
+        if (switchGoalAlert.isChecked()) switchState = true;
+        else switchState = false;
+
+        if (!switchState) {
+            mAlarm.cancel(notifyIntent);
+        } else {
+            long triggerAtMillis;
+            triggerAtMillis = goalDate.getTime();
+            mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
         }
-    }
 
-    //button navigation
-    public void defineButtons() {
-        findViewById(R.id.btnCourseDetailNotes).setOnClickListener(buttonClickListener);
-        findViewById(R.id.btnCourseDetailManageAss).setOnClickListener(buttonClickListener);
     }
 
     private View.OnClickListener buttonClickListener = new View.OnClickListener() {
@@ -229,31 +252,32 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             switch (view.getId()) {
                 case R.id.btnCourseDetailNotes:
 
-                    //If course does not exist-> prompt user to save one before notes can be added
                     if (courseId == 0) {
                         Toast.makeText(getApplicationContext(),
                                 "You must save a course before adding notes", Toast.LENGTH_LONG).show();
                     } else {
-                        Intent openNotes = new Intent(CourseDetails.this, NotesActivity.class);
-                        Bundle extras = new Bundle();
+                        Intent openNotes;
+                        openNotes = new Intent(CourseDetails.this, NotesActivity.class);
+                        Bundle extras;
+                        extras = new Bundle();
                         extras.putLong("courseId", courseId);
                         openNotes.putExtras(extras);
 
-                        if (extras != null) {
-                            extras.putLong("courseId", courseId);
-                            startActivity(openNotes);
-                        }
+                        extras.putLong("courseId", courseId);
+                        startActivity(openNotes);
                     }
                     break;
 
                 case R.id.btnCourseDetailManageAss:
-                    //If course does not exist-> prompt user to save one before assessments can be added
+
                     if (courseId == 0) {
                         Toast.makeText(getApplicationContext(),
                                 "You must save a course before adding assessments", Toast.LENGTH_LONG).show();
                     } else {
-                        Intent openAssessment = new Intent(CourseDetails.this, AssessmentList.class);
-                        Bundle extras = new Bundle();
+                        Intent openAssessment;
+                        openAssessment = new Intent(CourseDetails.this, AssessmentList.class);
+                        Bundle extras;
+                        extras = new Bundle();
                         extras.putLong("courseId", courseId);
                         openAssessment.putExtras(extras);
 
@@ -275,20 +299,28 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-    public void saveCourse(View view) {
+    public void saveCourse(View view) throws ParseException {
         setStartAlert();
         setEndAlert();
         //Create variables
-        String courseName = courseNameEditText.getText().toString();
-        String courseStart = mCourseStartDate.getText().toString();
-        String courseEnd = mCourseEndDate.getText().toString();
-        String courseStatus = mStatusSpinner.getSelectedItem().toString();
-        String mentorName = ptMentorDetailName.getText().toString();
-        String mentorPhone = ptMentorDetailPhone.getText().toString();
-        String mentorEmail = ptMentorDetailEmail.getText().toString();
+        String courseName;
+        courseName = courseNameEditText.getText().toString();
+        String courseStart;
+        courseStart = mCourseStartDate.getText().toString();
+        String courseEnd;
+        courseEnd = mCourseEndDate.getText().toString();
+        String courseStatus;
+        courseStatus = mStatusSpinner.getSelectedItem().toString();
+        String mentorName;
+        mentorName = ptMentorDetailName.getText().toString();
+        String mentorPhone;
+        mentorPhone = ptMentorDetailPhone.getText().toString();
+        String mentorEmail;
+        mentorEmail = ptMentorDetailEmail.getText().toString();
 
         //set variables with data
-        final Course course = new Course();
+        final Course course;
+        course = new Course();
         course.setTermId(termId);
         course.setCourseId(courseId);
         course.setCourseName(courseName);
@@ -299,13 +331,12 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         course.setCourseMentorPhone(mentorPhone);
         course.setCourseMentorEmail(mentorEmail);
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
         datasource.open();
-        if (courseId == 0) {
-            datasource.createCourse(course);
-        } else {
-            datasource.updateCourse(course);
-        }
+
+        if (courseId == 0) datasource.createCourse(course);
+        else datasource.updateCourse(course);
 
         DatabaseConnection.databaseHelper.close();
         finish();
@@ -313,13 +344,12 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
     public void deleteCourse(View view) {
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
         datasource.open();
         datasource.deleteCourse(courseId);
         DatabaseConnection.databaseHelper.close();
         finish();
-
-        Toast.makeText(this, "Course was deleted", Toast.LENGTH_SHORT).show();
 
     }
 }

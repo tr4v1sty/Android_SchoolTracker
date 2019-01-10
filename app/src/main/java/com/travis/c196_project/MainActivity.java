@@ -16,32 +16,35 @@ public class MainActivity extends ListActivity {
     public Button btnAddTerm;
 
 
-    public void configAddTerm() {
-        btnAddTerm = findViewById(R.id.btnAddTerm);
-        btnAddTerm.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent addTerm = new Intent(MainActivity.this, TermDetails.class);
-                startActivity(addTerm);
-            }
-        });
-    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity);
-        configAddTerm();
 
 
-        ListView lv = getListView();
+        btnAddTerm = findViewById(R.id.btnAddTerm);
+        btnAddTerm.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent addTerm;
+                addTerm = new Intent(MainActivity.this, TermDetails.class);
+                startActivity(addTerm);
+            }
+        });
+
+
+        ListView lv;
+        lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TermDetails.class);
-                Term term = (Term) parent.getItemAtPosition(position);
+                Intent intent;
+                intent = new Intent(MainActivity.this, TermDetails.class);
+                Term term;
+                term = (Term) parent.getItemAtPosition(position);
                 //get info
                 intent.putExtra("termId", term.getTermId());
                 intent.putExtra("termName", term.getTermName());
@@ -55,7 +58,8 @@ public class MainActivity extends ListActivity {
 
 
     public void onClick(View view) {
-        ArrayAdapter<Term> adapter = (ArrayAdapter<Term>) getListAdapter();
+        ArrayAdapter<Term> adapter;
+        adapter = (ArrayAdapter<Term>) getListAdapter();
         adapter.notifyDataSetChanged();
     }
 
@@ -63,11 +67,14 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
         datasource.open();
-        List<Term> listValue = datasource.getAllTerms();
+        List<Term> listValue;
+        listValue = datasource.getAllTerms();
         DatabaseConnection.databaseHelper.close();
-        ArrayAdapter<Term> adapter = new ArrayAdapter<>(this,
+        ArrayAdapter<Term> adapter;
+        adapter = new ArrayAdapter<>(this,
                 R.layout.list_items, listValue);
         setListAdapter(adapter);
     }

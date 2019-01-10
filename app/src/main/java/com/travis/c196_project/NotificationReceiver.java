@@ -18,11 +18,13 @@ public class NotificationReceiver extends BroadcastReceiver {
     }
 
     private void createNotification(Context context) {
-        PendingIntent mIntent = PendingIntent.getActivity(context, 0,
+        PendingIntent mIntent;
+        mIntent = PendingIntent.getActivity(context, 0,
                 new Intent(context, MainActivity.class), 0);
 
         //Build the notification
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context)
+        NotificationCompat.Builder mBuilder;
+        mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.baseline_announcement_black_18dp)
                 .setContentTitle("Alert From WGU")
                 .setContentText("Important Date Event")
@@ -33,7 +35,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         mBuilder.setContentIntent(mIntent);
         mBuilder.setAutoCancel(true);
 
-        NotificationManager mManager = (NotificationManager)
+        NotificationManager mManager;
+        mManager = (NotificationManager)
                 context.getSystemService(Context.NOTIFICATION_SERVICE);
         mManager.notify(1, mBuilder.build());
 

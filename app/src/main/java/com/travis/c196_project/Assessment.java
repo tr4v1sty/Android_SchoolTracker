@@ -14,7 +14,10 @@ public class Assessment {
 
     @Override
     public String toString() {
-        return "Assessment Name: " + assessmentName + "\n Goal: " + assessmentGoalDate + "\n Type: " + assessmentType;
+        return assessmentName + "\n Date "
+                + assessmentGoalDate
+                + "\n Type: "
+                + assessmentType;
     }
 
     public long getAssessmentId() {

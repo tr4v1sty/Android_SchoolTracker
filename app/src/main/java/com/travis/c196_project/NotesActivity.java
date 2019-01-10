@@ -24,19 +24,23 @@ public class NotesActivity extends Activity {
         ptNotesName = findViewById(R.id.ptNotesName);
         etNotesMultiText = findViewById(R.id.etNotesMultiText);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            courseId = extras.getLong("courseId");
-
-            DatabaseConnection datasource = new DatabaseConnection(this);
-            datasource.open();
-            Course cm = datasource.getNotes(courseId);
-
-            //Assign to proper controls
-            ptNotesName.setText(cm.getCourseNotesTitle());
-            etNotesMultiText.setText(cm.getCourseNotesText());
-            DatabaseConnection.databaseHelper.close();
+        Bundle extras;
+        extras = getIntent().getExtras();
+        if (extras == null) {
+            return;
         }
+        courseId = extras.getLong("courseId");
+
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
+        datasource.open();
+        Course cm;
+        cm = datasource.getNotes(courseId);
+
+        //Assign to proper controls
+        ptNotesName.setText(cm.getCourseNotesTitle());
+        etNotesMultiText.setText(cm.getCourseNotesText());
+        DatabaseConnection.databaseHelper.close();
     }
 
 
@@ -45,7 +49,8 @@ public class NotesActivity extends Activity {
         notesName = ptNotesName.getText().toString();
         notesBody = etNotesMultiText.getText().toString();
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource;
+        datasource = new DatabaseConnection(this);
         datasource.open();
         datasource.updateNotes(courseId, notesName, notesBody);
         DatabaseConnection.databaseHelper.close();

@@ -21,7 +21,11 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course Name: " + courseName + "\n Start: " + courseStart + "\n End: " + courseEnd;
+        return courseName
+                + "\n"
+                + courseStart
+                + " - "
+                + courseEnd;
     }
 
     public long getCourseId() {

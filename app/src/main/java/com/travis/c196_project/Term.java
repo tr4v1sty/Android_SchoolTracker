@@ -13,11 +13,8 @@ public class Term {
 
     @Override
     public String toString() {
-        return "Term Name: " + termName + "\n Start: " + termStart + "\n End: " + termEnd;
+        return termName + "\n" + termStart + " - " + termEnd;
     }
-
-
-
 
     public long getTermId() {
         return termId;

@@ -1,5 +1,4 @@
 package com.travis.c196_project;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +14,11 @@ public class AssessmentList extends ListActivity {
     public Button btnAddAssessment;
     private long courseId;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_assessment_list);
 
-    public void configAddAssessment() {
         btnAddAssessment = findViewById(R.id.btnAddAssessment);
         btnAddAssessment.setOnClickListener(new View.OnClickListener() {
 
@@ -28,14 +30,6 @@ public class AssessmentList extends ListActivity {
                 startActivity(addAssessment);
             }
         });
-    }
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assessment_list);
-        configAddAssessment();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
