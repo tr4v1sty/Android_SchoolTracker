@@ -20,40 +20,43 @@ public class NotesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        //Variables for the controls
         ptNotesName = findViewById(R.id.ptNotesName);
         etNotesMultiText = findViewById(R.id.etNotesMultiText);
 
         Bundle extras;
         extras = getIntent().getExtras();
+
         if (extras == null) {
             return;
         }
         courseId = extras.getLong("courseId");
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         Course cm;
         cm = datasource.getNotes(courseId);
 
-        //Assign to proper controls
         ptNotesName.setText(cm.getCourseNotesTitle());
         etNotesMultiText.setText(cm.getCourseNotesText());
+
         DatabaseConnection.databaseHelper.close();
     }
 
 
     public void saveNote(View view) {
-        //Create variables
         notesName = ptNotesName.getText().toString();
         notesBody = etNotesMultiText.getText().toString();
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        DatabaseConnection datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         datasource.updateNotes(courseId, notesName, notesBody);
+
         DatabaseConnection.databaseHelper.close();
+
         finish();
     }
 
@@ -63,10 +66,12 @@ public class NotesActivity extends Activity {
         notesBody = etNotesMultiText.getText().toString();
 
         Intent sendIntent = new Intent();
+
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
         sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
         sendIntent.setType("text/plain");
+
         startActivity(sendIntent);
 
     }

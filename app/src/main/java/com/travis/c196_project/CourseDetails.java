@@ -9,8 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,7 +16,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -37,13 +34,10 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public EditText ptMentorDetailPhone;
     public EditText ptMentorDetailEmail;
 
-    //DatePicker
     private EditText mCourseStartDate;
     private EditText mCourseEndDate;
     private DatePickerDialog.OnDateSetListener mStartDateSetListener;
     private DatePickerDialog.OnDateSetListener mEndDateSetListener;
-
-//    private static final String TAG = "CourseDetails";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +47,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         findViewById(R.id.btnCourseDetailNotes).setOnClickListener(buttonClickListener);
         findViewById(R.id.btnCourseDetailManageAss).setOnClickListener(buttonClickListener);
 
-        //variables for controls
         courseNameEditText = findViewById(R.id.ptCourseDetailCourseName);
         mCourseStartDate = findViewById(R.id.tvCourseDetailStartDate);
         mCourseEndDate = findViewById(R.id.tvCourseDetailEndDate);
@@ -62,19 +55,24 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         ptMentorDetailPhone = findViewById(R.id.ptMentorDetailPhone);
         ptMentorDetailEmail = findViewById(R.id.ptMentorDetailEmail);
 
-        //Spinner
         ArrayAdapter<CharSequence> adapter;
-        adapter = ArrayAdapter.createFromResource(this, R.array.course_detail, android.R.layout.simple_spinner_item);
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.course_detail,
+                android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mStatusSpinner.setAdapter(adapter);
         mStatusSpinner.setOnItemSelectedListener(this);
 
         Bundle extras;
         extras = getIntent().getExtras();
-        if (null == extras) {
+
+        if (extras == null) {
+            //do nothing
         } else {
             termId = extras.getLong("termId");
             courseId = extras.getLong("courseId");
+
             String courseName;
             courseName = extras.getString("courseName");
             String courseStart;
@@ -90,7 +88,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             String mentorEmail;
             mentorEmail = extras.getString("mentorEmail");
 
-            //Assign to proper controls
             courseNameEditText.setText(courseName);
             mCourseStartDate.setText(courseStart);
             mCourseEndDate.setText(courseEnd);
@@ -104,24 +101,30 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             mStatusSpinner.setSelection(statusPosition);
         }
 
-        //DatePicker
         mCourseStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             //get today's date
             public void onClick(View view) {
                 Calendar cal;
                 cal = Calendar.getInstance();
+
                 int year;
                 year = cal.get(Calendar.YEAR);
+
                 int month;
                 month = cal.get(Calendar.MONTH);
+
                 int day;
                 day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
-                        CourseDetails.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mStartDateSetListener, year, month, day);
+                        CourseDetails.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mStartDateSetListener,
+                        year,
+                        month,
+                        day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -132,18 +135,27 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             public void onClick(View view) {
                 Calendar cal;
                 cal = Calendar.getInstance();
+
                 int year;
                 year = cal.get(Calendar.YEAR);
+
                 int month;
                 month = cal.get(Calendar.MONTH);
+
                 int day;
                 day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
-                        CourseDetails.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mEndDateSetListener, year, month, day);
+                        CourseDetails.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mEndDateSetListener,
+                        year,
+                        month,
+                        day);
+
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
                 dialog.show();
             }
         });
@@ -152,8 +164,10 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month += 1;
+
                 String date;
                 date = month + "/" + day + "/" + year;
+
                 mCourseStartDate.setText(date);
             }
         };
@@ -161,10 +175,11 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         mEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                //January = 0 need to add 1 to get correct month
                 month += 1;
+
                 String date;
                 date = month + "/" + day + "/" + year;
+
                 mCourseEndDate.setText(date);
             }
         };
@@ -189,20 +204,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
 
-        //initiate a Switch
         Switch switchGoalAlert;
         switchGoalAlert = findViewById(R.id.ptCourseDetailStartAlert);
 
-        // check current state of a Switch
         boolean switchState;
         if (switchGoalAlert.isChecked()) switchState = true;
         else switchState = false;
 
-        if (!switchState) {
+        if (switchState == false) {
             mAlarm.cancel(notifyIntent);
         } else {
             long triggerAtMillis;
             triggerAtMillis = goalDate.getTime();
+
             mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
         }
 
@@ -212,6 +226,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public void setEndAlert() throws ParseException {
         AlarmManager mAlarm;
         mAlarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
         Intent mIntent;
         mIntent = new Intent(this, NotificationReceiver.class);
 
@@ -227,20 +242,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
 
-        //initiate a Switch
         Switch switchGoalAlert;
         switchGoalAlert = findViewById(R.id.ptCourseDetailEndAlert);
 
-        // check current state of a Switch
         boolean switchState;
         if (switchGoalAlert.isChecked()) switchState = true;
         else switchState = false;
 
-        if (!switchState) {
+        if (switchState == false) {
             mAlarm.cancel(notifyIntent);
         } else {
             long triggerAtMillis;
             triggerAtMillis = goalDate.getTime();
+
             mAlarm.set(AlarmManager.RTC_WAKEUP, triggerAtMillis, notifyIntent);
         }
 
@@ -249,51 +263,53 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     private View.OnClickListener buttonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btnCourseDetailNotes:
 
-                    if (courseId == 0) {
-                        Toast.makeText(getApplicationContext(),
-                                "You must save a course before adding notes", Toast.LENGTH_LONG).show();
-                    } else {
-                        Intent openNotes;
-                        openNotes = new Intent(CourseDetails.this, NotesActivity.class);
-                        Bundle extras;
-                        extras = new Bundle();
-                        extras.putLong("courseId", courseId);
-                        openNotes.putExtras(extras);
+            int i = view.getId();
 
-                        extras.putLong("courseId", courseId);
-                        startActivity(openNotes);
-                    }
-                    break;
+            if (i == R.id.btnCourseDetailNotes) {
+                if (courseId == 0) {
+                    Toast.makeText(getApplicationContext(),
+                            "You must save a course before adding notes",
+                            Toast.LENGTH_LONG)
+                            .show();
+                } else {
+                    Intent openNotes;
+                    openNotes = new Intent(CourseDetails.this, NotesActivity.class);
 
-                case R.id.btnCourseDetailManageAss:
+                    Bundle extras;
+                    extras = new Bundle();
 
-                    if (courseId == 0) {
-                        Toast.makeText(getApplicationContext(),
-                                "You must save a course before adding assessments", Toast.LENGTH_LONG).show();
-                    } else {
-                        Intent openAssessment;
-                        openAssessment = new Intent(CourseDetails.this, AssessmentList.class);
-                        Bundle extras;
-                        extras = new Bundle();
-                        extras.putLong("courseId", courseId);
-                        openAssessment.putExtras(extras);
+                    extras.putLong("courseId", courseId);
+                    openNotes.putExtras(extras);
+                    extras.putLong("courseId", courseId);
 
-                        startActivity(openAssessment);
-                    }
-                    break;
+                    startActivity(openNotes);
+                }
+
+            } else if (i == R.id.btnCourseDetailManageAss) {
+                if (courseId == 0) {
+                    Toast.makeText(getApplicationContext(),
+                            "You must save a course before adding assessments", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent openAssessment;
+                    openAssessment = new Intent(CourseDetails.this, AssessmentList.class);
+                    Bundle extras;
+                    extras = new Bundle();
+                    extras.putLong("courseId", courseId);
+                    openAssessment.putExtras(extras);
+
+                    startActivity(openAssessment);
+                }
+
             }
         }
     };
 
-    //Spinner
+    //onItemSelected and onNothingSelected are required for Spinner
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         adapterView.getItemAtPosition(position).toString();
     }
-
     //Spinner
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
@@ -302,7 +318,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public void saveCourse(View view) throws ParseException {
         setStartAlert();
         setEndAlert();
-        //Create variables
+
         String courseName;
         courseName = courseNameEditText.getText().toString();
         String courseStart;
@@ -318,9 +334,8 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         String mentorEmail;
         mentorEmail = ptMentorDetailEmail.getText().toString();
 
-        //set variables with data
-        final Course course;
-        course = new Course();
+        final Course course = new Course();
+
         course.setTermId(termId);
         course.setCourseId(courseId);
         course.setCourseName(courseName);
@@ -333,12 +348,14 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
         DatabaseConnection datasource;
         datasource = new DatabaseConnection(this);
+
         datasource.open();
 
         if (courseId == 0) datasource.createCourse(course);
         else datasource.updateCourse(course);
 
         DatabaseConnection.databaseHelper.close();
+
         finish();
     }
 
@@ -346,9 +363,13 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
         DatabaseConnection datasource;
         datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         datasource.deleteCourse(courseId);
+
         DatabaseConnection.databaseHelper.close();
+
         finish();
 
     }

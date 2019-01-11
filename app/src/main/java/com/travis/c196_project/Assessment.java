@@ -9,7 +9,7 @@ public class Assessment {
     private String assessmentGoalDate;
     private int assessmentNotification;
 
-    public Assessment() {
+    Assessment() {
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Assessment {
                 + assessmentType;
     }
 
-    public long getAssessmentId() {
+    long getAssessmentId() {
         return assessmentId;
     }
 
-    public long getCourseId() {
+    long getCourseId() {
         return courseId;
     }
 
@@ -32,23 +32,23 @@ public class Assessment {
         return assessmentName;
     }
 
-    public String getAssessmentType() {
+    String getAssessmentType() {
         return assessmentType;
     }
 
-    public String getAssessmentGoalDate() {
+    String getAssessmentGoalDate() {
         return assessmentGoalDate;
     }
 
-    public int getAssessmentNotification() {
+    int getAssessmentNotification() {
         return assessmentNotification;
     }
 
-    public void setAssessmentId(long assessmentId) {
+    void setAssessmentId(long assessmentId) {
         this.assessmentId = assessmentId;
     }
 
-    public void setCourseId(long courseId) {
+    void setCourseId(long courseId) {
         this.courseId = courseId;
     }
 
@@ -56,14 +56,11 @@ public class Assessment {
         this.assessmentName = assessmentName;
     }
 
-    public void setAssessmentType(String assessmentType) {
+    void setAssessmentType(String assessmentType) {
         this.assessmentType = assessmentType;
     }
 
-    public void setAssessmentGoalDate(String assessmentGoalDate) {
+    void setAssessmentGoalDate(String assessmentGoalDate) {
         this.assessmentGoalDate = assessmentGoalDate;
-    }
-    public void setAssessmentNotification(int assessmentNotification) {
-        this.assessmentNotification = assessmentNotification;
     }
 }

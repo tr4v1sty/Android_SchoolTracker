@@ -21,30 +21,31 @@ public class AssessmentList extends ListActivity {
 
         btnAddAssessment = findViewById(R.id.btnAddAssessment);
         btnAddAssessment.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent addAssessment = new Intent(AssessmentList.this, AssessmentDetails.class);
+
                 addAssessment.putExtra("courseId", courseId);
 
                 startActivity(addAssessment);
             }
         });
 
-        Bundle extras = getIntent().getExtras();
+        Bundle extras;
+        extras = getIntent().getExtras();
+
         if (extras != null) {
             courseId = extras.getLong("courseId");
         }
 
-        //Send selected list item to AssessmentDetails
         ListView lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
+
                 Assessment assessment = (Assessment) parent.getItemAtPosition(position);
 
-                //get info
                 intent.putExtra("courseId", assessment.getCourseId());
                 intent.putExtra("assessmentId", assessment.getAssessmentId());
                 intent.putExtra("assessmentName", assessment.getAssessmentName());
@@ -66,13 +67,20 @@ public class AssessmentList extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         DatabaseConnection datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         List<Assessment> listValue = datasource.getAssessments(courseId);
 
         DatabaseConnection.databaseHelper.close();
-        ArrayAdapter<Assessment> adapter = new ArrayAdapter<>(this,
-                R.layout.list_items, listValue);
+
+        ArrayAdapter<Assessment> adapter;
+        adapter = new ArrayAdapter<>(this,
+                R.layout.list_items,
+                listValue);
+
         setListAdapter(adapter);
     }
 

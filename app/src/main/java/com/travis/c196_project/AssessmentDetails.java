@@ -26,7 +26,6 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
     private long assessmentId;
     public EditText assessmentNameEditText;
 
-    //DatePicker
     private EditText mGoalDate;
     private DatePickerDialog.OnDateSetListener mGoalDateSetListener;
 
@@ -35,12 +34,10 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_details);
 
-        //variables for controls
         assessmentNameEditText = findViewById(R.id.ptAssessmentDetailName);
         mGoalDate = findViewById(R.id.tvAssessmentDetailGoalDate);
         mTypeSpinner = findViewById(R.id.spinnerAssessmentDetailType);
 
-        //Spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.assessment_type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,10 +46,14 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
 
         Bundle extras;
         extras = getIntent().getExtras();
-        if (!(null == extras)) {
+
+        if (extras == null) {
+            //do nothing
+        } else {
 
             courseId = extras.getLong("courseId");
             assessmentId = extras.getLong("assessmentId");
+
             String assessmentName;
             assessmentName = extras.getString("assessmentName");
             String assessmentGoal;
@@ -60,7 +61,6 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             String assessmentType;
             assessmentType = extras.getString("assessmentType");
 
-            //Assign to proper controls
             assessmentNameEditText.setText(assessmentName);
             mGoalDate.setText(assessmentGoal);
 
@@ -68,25 +68,31 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             mTypeSpinner.setSelection(typePosition);
         }
 
-        //DatePicker
         mGoalDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            //get today's date
             public void onClick(View view) {
                 Calendar cal;
                 cal = Calendar.getInstance();
+
                 int year;
                 year = cal.get(Calendar.YEAR);
+
                 int month;
                 month = cal.get(Calendar.MONTH);
+
                 int day;
                 day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(AssessmentDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, mGoalDateSetListener,
-                        year, month, day);
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mGoalDateSetListener,
+                        year,
+                        month,
+                        day);
+
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
                 dialog.show();
             }
         });
@@ -98,6 +104,7 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
 
                 String date;
                 date = month + "/" + day + "/" + year;
+
                 mGoalDate.setText(date);
             }
         };
@@ -122,11 +129,9 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
 
-        //initiate a Switch
         Switch switchGoalAlert;
         switchGoalAlert = findViewById(R.id.ptAssessmentDetailGoalAlert);
 
-        // check current state of a Switch (true or false).
         boolean switchState;
         switchState = switchGoalAlert.isChecked();
 
@@ -144,17 +149,17 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
 
         setAlert();
 
-        //Create variables
         String assessmentName;
         assessmentName = assessmentNameEditText.getText().toString();
+
         String assessmentGoal;
         assessmentGoal = mGoalDate.getText().toString();
+
         String assessmentType;
         assessmentType = mTypeSpinner.getSelectedItem().toString();
 
-        //set variables with data
-        final Assessment assessment;
-        assessment = new Assessment();
+        final Assessment assessment = new Assessment();
+
         assessment.setCourseId(courseId);
         assessment.setAssessmentId(assessmentId);
         assessment.setAssessmentName(assessmentName);
@@ -172,15 +177,20 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
 
 
         DatabaseConnection.databaseHelper.close();
+
         finish();
     }
 
     public void deleteAssessment(View view) {
         DatabaseConnection datasource;
         datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         datasource.deleteAssessment(assessmentId);
+
         DatabaseConnection.databaseHelper.close();
+
         finish();
     }
 

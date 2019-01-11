@@ -31,21 +31,23 @@ public class MainActivity extends ListActivity {
             public void onClick(View view) {
                 Intent addTerm;
                 addTerm = new Intent(MainActivity.this, TermDetails.class);
+
                 startActivity(addTerm);
             }
         });
 
-
         ListView lv;
         lv = getListView();
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 intent = new Intent(MainActivity.this, TermDetails.class);
+
                 Term term;
                 term = (Term) parent.getItemAtPosition(position);
-                //get info
+
                 intent.putExtra("termId", term.getTermId());
                 intent.putExtra("termName", term.getTermName());
                 intent.putExtra("termStart", term.getTermStart());
@@ -58,24 +60,32 @@ public class MainActivity extends ListActivity {
 
 
     public void onClick(View view) {
-        ArrayAdapter<Term> adapter;
-        adapter = (ArrayAdapter<Term>) getListAdapter();
+
+        ArrayAdapter<Term> adapter = (ArrayAdapter<Term>) getListAdapter();
         adapter.notifyDataSetChanged();
+
     }
 
 
     @Override
     protected void onResume() {
+
         super.onResume();
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+
+        DatabaseConnection datasource = new DatabaseConnection(this);
+
         datasource.open();
+
         List<Term> listValue;
         listValue = datasource.getAllTerms();
+
         DatabaseConnection.databaseHelper.close();
+
         ArrayAdapter<Term> adapter;
         adapter = new ArrayAdapter<>(this,
-                R.layout.list_items, listValue);
+                R.layout.list_items,
+                listValue);
+
         setListAdapter(adapter);
     }
 

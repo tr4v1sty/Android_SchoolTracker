@@ -7,7 +7,7 @@ public class Term {
     private String termEnd;
     private String termName;
 
-    public Term() {
+    Term() {
 
     }
 
@@ -16,27 +16,27 @@ public class Term {
         return termName + "\n" + termStart + " - " + termEnd;
     }
 
-    public long getTermId() {
+    long getTermId() {
         return termId;
     }
 
-    public void setTermId(long termId) {
+    void setTermId(long termId) {
         this.termId = termId;
     }
 
-    public String getTermStart() {
+    String getTermStart() {
         return termStart;
     }
 
-    public void setTermStart(String termStart) {
+    void setTermStart(String termStart) {
         this.termStart = termStart;
     }
 
-    public String getTermEnd() {
+    String getTermEnd() {
         return termEnd;
     }
 
-    public void setTermEnd(String termEnd) {
+    void setTermEnd(String termEnd) {
         this.termEnd = termEnd;
     }
 

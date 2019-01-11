@@ -14,21 +14,18 @@ public class CourseList extends ListActivity {
     public Button btnAddCourse;
     private long termId;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
 
-
         btnAddCourse = findViewById(R.id.btnAddCourse);
         btnAddCourse.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent addCourse;
                 addCourse = new Intent(CourseList.this, CourseDetails.class);
+
                 addCourse.putExtra("termId", termId);
 
                 startActivity(addCourse);
@@ -37,20 +34,19 @@ public class CourseList extends ListActivity {
 
         Bundle extras;
         extras = getIntent().getExtras();
+
         termId = extras.getLong("termId");
 
-        //Send selected list item to CourseDetails
-        ListView lv;
-        lv = getListView();
+        ListView lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 intent = new Intent(CourseList.this, CourseDetails.class);
+
                 Course course;
                 course = (Course) parent.getItemAtPosition(position);
 
-                //get info
                 intent.putExtra("termId", course.getCourseTermId());
                 intent.putExtra("courseId", course.getCourseId());
                 intent.putExtra("courseName", course.getCourseName());
@@ -61,6 +57,7 @@ public class CourseList extends ListActivity {
                 intent.putExtra("mentorName", course.getCourseMentorName());
                 intent.putExtra("mentorPhone", course.getCourseMentorPhone());
                 intent.putExtra("mentorEmail", course.getCourseMentorEmail());
+
                 startActivity(intent);
             }
         });
@@ -68,8 +65,8 @@ public class CourseList extends ListActivity {
 
 
     public void onClick(View view) {
-        ArrayAdapter<Course> adapter;
-        adapter = (ArrayAdapter<Course>) getListAdapter();
+        ArrayAdapter<Course> adapter = (ArrayAdapter<Course>) getListAdapter();
+
         adapter.notifyDataSetChanged();
     }
 
@@ -77,15 +74,21 @@ public class CourseList extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         DatabaseConnection datasource;
         datasource = new DatabaseConnection(this);
+
         datasource.open();
-        List<Course> listValue;
-        listValue = datasource.getCourses(termId);
+
+        List<Course> listValue = datasource.getCourses(termId);
+
         DatabaseConnection.databaseHelper.close();
+
         ArrayAdapter<Course> adapter;
         adapter = new ArrayAdapter<>(this,
-                R.layout.list_items, listValue);
+                R.layout.list_items,
+                listValue);
+
         setListAdapter(adapter);
     }
 

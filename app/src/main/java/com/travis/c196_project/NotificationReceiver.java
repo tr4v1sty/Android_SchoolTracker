@@ -13,16 +13,21 @@ import android.widget.Toast;
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Toast.makeText(context, "Notification set", Toast.LENGTH_SHORT).show();
+
         createNotification(context);
+
     }
 
     private void createNotification(Context context) {
-        PendingIntent mIntent;
-        mIntent = PendingIntent.getActivity(context, 0,
-                new Intent(context, MainActivity.class), 0);
 
-        //Build the notification
+        PendingIntent mIntent;
+        mIntent = PendingIntent.getActivity(context,
+                0,
+                new Intent(context, MainActivity.class),
+                0);
+
         NotificationCompat.Builder mBuilder;
         mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.baseline_announcement_black_18dp)
@@ -31,13 +36,11 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentInfo("Please check the scheduler for an important date event.")
                 .setDefaults(Notification.DEFAULT_ALL);
 
-        //the intent to run when clicked and cancel notification on click
         mBuilder.setContentIntent(mIntent);
         mBuilder.setAutoCancel(true);
 
-        NotificationManager mManager;
-        mManager = (NotificationManager)
-                context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
         mManager.notify(1, mBuilder.build());
 
     }

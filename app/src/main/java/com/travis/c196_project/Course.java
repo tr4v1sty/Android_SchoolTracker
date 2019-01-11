@@ -15,7 +15,7 @@ public class Course {
     private String courseMentorPhone;
     private String courseMentorEmail;
 
-    public Course (){
+    Course(){
 
     }
 
@@ -28,11 +28,11 @@ public class Course {
                 + courseEnd;
     }
 
-    public long getCourseId() {
+    long getCourseId() {
         return courseId;
     }
 
-    public long getCourseTermId() {
+    long getCourseTermId() {
         return termId;
     }
 
@@ -40,51 +40,51 @@ public class Course {
         return courseName;
     }
 
-    public String getCourseStart() {
+    String getCourseStart() {
         return courseStart;
     }
 
-    public String getCourseEnd() {
+    String getCourseEnd() {
         return courseEnd;
     }
 
-    public String getCourseStatus() {
+    String getCourseStatus() {
         return courseStatus;
     }
 
-    public int getCourseNotificationStart() {
+    int getCourseNotificationStart() {
         return courseNotificationStart;
     }
 
-    public int getCourseNotificationEnd() {
+    int getCourseNotificationEnd() {
         return courseNotificationEnd;
     }
 
-    public String getCourseNotesTitle() {
+    String getCourseNotesTitle() {
         return courseNotesTitle;
     }
 
-    public String getCourseNotesText() {
+    String getCourseNotesText() {
         return courseNotesText;
     }
 
-    public String getCourseMentorName() {
+    String getCourseMentorName() {
         return courseMentorName;
     }
 
-    public String getCourseMentorPhone() {
+    String getCourseMentorPhone() {
         return courseMentorPhone;
     }
 
-    public String getCourseMentorEmail() {
+    String getCourseMentorEmail() {
         return courseMentorEmail;
     }
 
-    public void setCourseId(long courseId) {
+    void setCourseId(long courseId) {
         this.courseId = courseId;
     }
 
-    public void setTermId(long termId) {
+    void setTermId(long termId) {
         this.termId = termId;
     }
 
@@ -92,43 +92,43 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public void setCourseStart(String courseStart) {
+    void setCourseStart(String courseStart) {
         this.courseStart = courseStart;
     }
 
-    public void setCourseEnd(String courseEnd) {
+    void setCourseEnd(String courseEnd) {
         this.courseEnd = courseEnd;
     }
 
-    public void setCourseStatus(String courseStatus) {
+    void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
     }
 
-    public void setCourseNotificationStart(int courseNotificationStart) {
+    void setCourseNotificationStart(int courseNotificationStart) {
         this.courseNotificationStart = courseNotificationStart;
     }
 
-    public void setCourseNotificationEnd(int courseNotificationEnd) {
+    void setCourseNotificationEnd(int courseNotificationEnd) {
         this.courseNotificationEnd = courseNotificationEnd;
     }
 
-    public void setCourseNotesTitle(String courseNotesTitle) {
+    void setCourseNotesTitle(String courseNotesTitle) {
         this.courseNotesTitle = courseNotesTitle;
     }
 
-    public void setCourseNotesText(String courseNotesText) {
+    void setCourseNotesText(String courseNotesText) {
         this.courseNotesText = courseNotesText;
     }
 
-    public void setCourseMentorName(String courseMentorName) {
+    void setCourseMentorName(String courseMentorName) {
         this.courseMentorName = courseMentorName;
     }
 
-    public void setCourseMentorPhone(String courseMentorPhone) {
+    void setCourseMentorPhone(String courseMentorPhone) {
         this.courseMentorPhone = courseMentorPhone;
     }
 
-    public void setCourseMentorEmail(String courseMentorEmail) {
+    void setCourseMentorEmail(String courseMentorEmail) {
         this.courseMentorEmail = courseMentorEmail;
     }
 

@@ -6,14 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    //Database name and version
     private static final String DB_NAME = "SchoolInfo.db";
     private static final int DB_VERSION = 1;
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
-
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -30,16 +28,12 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //Variables for each table and its associated columns.
-    // Table: Terms
     public static final String TERM_TABLE = "terms";
     public static final String TERM_ID_COLUMN = "termId";
     public static final String TERM_NAME_COLUMN = "termName";
     public static final String TERM_START_COLUMN = "termStart";
     public static final String TERM_END_COLUMN = "termEnd";
 
-    // Set the name and type with addition of other attributes such as
-    // auto increment and the proper key associations.
     private static final String CREATION_STRING_FOR_TERMS_TABLE =
             "CREATE TABLE IF NOT EXISTS " + TERM_TABLE + " (" +
                     TERM_ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -48,7 +42,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     TERM_END_COLUMN + " DATE " +
                     ")";
 
-    // Table: Courses
     public static final String COURSES_TABLE = "courses";
     public static final String COURSE_ID_COLUMN = "courseId";
     public static final String COURSE_TERM_ID_COLUMN = "courseTermId";
@@ -83,7 +76,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + COURSE_TERM_ID_COLUMN + ") REFERENCES " + TERM_TABLE + "(" + TERM_ID_COLUMN + ")" +
                     "ON DELETE RESTRICT)";
 
-    // Table: Assessment
     public static final String ASSESSMENTS_TABLE = "assessments";
     public static final String ASSESSMENT_TABLE_ID_COLUMN = "assessmentId";
     public static final String ASSESSMENT_COURSE_ID_COLUMN = "assessmentCourseId";
