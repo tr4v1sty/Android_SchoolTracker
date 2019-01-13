@@ -1,26 +1,14 @@
 package com.travis.c196_project;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.content.*;
+import android.database.*;
+import android.database.sqlite.*;
+import java.util.*;
 
 public class DatabaseConnection {
 
     private SQLiteDatabase database;
     static SQLiteOpenHelper databaseHelper;
-
-
-    private static final String [] columns_terms = {
-            DBHelper.TERM_END_COLUMN,
-            DBHelper.TERM_ID_COLUMN,
-            DBHelper.TERM_NAME_COLUMN,
-            DBHelper.TERM_START_COLUMN
-    };
 
     private static final String [] columns_courses = {
 
@@ -54,16 +42,23 @@ public class DatabaseConnection {
 
     };
 
-    public DatabaseConnection (Context context) {
+    private static final String [] columns_terms = {
+            DBHelper.TERM_END_COLUMN,
+            DBHelper.TERM_ID_COLUMN,
+            DBHelper.TERM_NAME_COLUMN,
+            DBHelper.TERM_START_COLUMN
+    };
+
+    DatabaseConnection(Context context) {
         databaseHelper = new DBHelper(context);
     }
 
-    public void open() {
+    void open() {
         database = databaseHelper.getWritableDatabase();
     }
 
 
-    public Term createTerm (Term term){
+    Term createTerm(Term term){
 
         ContentValues values;
         values = new ContentValues();
@@ -84,7 +79,7 @@ public class DatabaseConnection {
         return term;
     }
 
-    public Course createCourse(Course course) {
+    Course createCourse(Course course) {
 
         ContentValues values;
         values = new ContentValues();
@@ -122,7 +117,7 @@ public class DatabaseConnection {
         return course;
     }
 
-    public Assessment createAssessment(Assessment assessment) {
+    Assessment createAssessment(Assessment assessment) {
 
         ContentValues values;
         values = new ContentValues();
@@ -147,7 +142,7 @@ public class DatabaseConnection {
         return assessment;
     }
 
-    public void updateTerm(Term term) {
+    void updateTerm(Term term) {
 
         ContentValues values;
         values = new ContentValues();
@@ -167,7 +162,7 @@ public class DatabaseConnection {
                 null);
     }
 
-    public void updateCourse(Course course) {
+    void updateCourse(Course course) {
 
         ContentValues values;
         values = new ContentValues();
@@ -203,7 +198,7 @@ public class DatabaseConnection {
                 null);
     }
 
-    public void updateAssessment(Assessment assessment) {
+    void updateAssessment(Assessment assessment) {
 
         ContentValues values;
         values = new ContentValues();
@@ -225,7 +220,7 @@ public class DatabaseConnection {
                 null);
     }
 
-    public void updateNotes(long id, String notesName, String notesBody) {
+    void updateNotes(long id, String notesName, String notesBody) {
 
         ContentValues values;
         values = new ContentValues();
@@ -259,7 +254,7 @@ public class DatabaseConnection {
                 null);
     }
 
-    public void deleteAssessment(long id) {
+    void deleteAssessment(long id) {
 
         database.delete(DBHelper.ASSESSMENTS_TABLE,
                 DBHelper.ASSESSMENT_TABLE_ID_COLUMN
@@ -268,7 +263,7 @@ public class DatabaseConnection {
 
     }
 
-    public List<Term> getAllTerms() {
+    List<Term> getAllTerms() {
 
         List<Term> termList = new ArrayList<>();
 
@@ -292,7 +287,7 @@ public class DatabaseConnection {
         return termList;
     }
 
-    public List<Course> getCourses(long termId) {
+    List<Course> getCourses(long termId) {
 
         List<Course> courseList = new ArrayList<>();
 
@@ -328,7 +323,7 @@ public class DatabaseConnection {
         return courseList;
     }
 
-    public List<Assessment> getAssessments(long courseId) {
+    List<Assessment> getAssessments(long courseId) {
 
         List<Assessment> assessmentList = new ArrayList<>();
 
@@ -356,7 +351,7 @@ public class DatabaseConnection {
         return assessmentList;
     }
 
-    public Course getNotes(long courseId) {
+    Course getNotes(long courseId) {
 
         Course course = new Course();
 
@@ -364,13 +359,20 @@ public class DatabaseConnection {
 
         Cursor cursor;
         cursor = database.query(DBHelper.COURSES_TABLE,
-                columns_courses, DBHelper.COURSE_ID_COLUMN + " = ?", selectionArgs, null, null, null);
+                columns_courses,
+                DBHelper.COURSE_ID_COLUMN + " = ?",
+                selectionArgs,
+                null,
+                null,
+                null);
 
-        if (cursor.getCount() > 0) while (cursor.moveToNext()) {
-            course.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_ID_COLUMN)));
-            course.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_TERM_ID_COLUMN)));
-            course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TITLE_COLUMN)));
-            course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TEXT_COLUMN)));
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                course.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_ID_COLUMN)));
+                course.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_TERM_ID_COLUMN)));
+                course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TITLE_COLUMN)));
+                course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TEXT_COLUMN)));
+            }
         }
         return course;
     }

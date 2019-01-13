@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -34,12 +35,8 @@ public class AssessmentList extends ListActivity {
         Bundle extras;
         extras = getIntent().getExtras();
 
-        if (extras != null) {
-            courseId = extras.getLong("courseId");
-        }
-
         ListView lv = getListView();
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
@@ -55,6 +52,10 @@ public class AssessmentList extends ListActivity {
                 startActivity(intent);
             }
         });
+
+        if (extras != null) {
+            courseId = extras.getLong("courseId");
+        }
     }
 
 
