@@ -190,39 +190,44 @@ public class TermDetails extends AppCompatActivity {
         term.setTermStart(termStart);
         term.setTermEnd(termEnd);
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        TermData termData = new TermData(this);
 
-        datasource.open();
+        termData.open();
 
         Bundle extras;
         extras = getIntent().getExtras();
 
-        if (extras == null) datasource.createTerm(term);
-        else datasource.updateTerm(term);
+        if (extras == null) termData.createTerm(term);
+        else termData.updateTerm(term);
 
 
-        DatabaseConnection.databaseHelper.close();
+        termData.close();
+
         finish();
     }
 
     public void deleteTerm(View view) {
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        TermData termData = new TermData(this);
 
-        datasource.open();
+        termData.open();
+
+        CourseData courseData = new CourseData(this);
+
+        courseData.open();
 
         List<Course> listValue;
-        listValue = datasource.getCourses(termId);
+        listValue = courseData.getCourses(termId);
 
-        if (listValue.isEmpty()) datasource.deleteTerm(termId);
+        if (listValue.isEmpty()) termData.deleteTerm(termId);
         else {
             Toast.makeText(this,
                     "Cannot delete a term with courses associated to it",
                     Toast.LENGTH_SHORT).show();
         }
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
+
         finish();
     }
 }

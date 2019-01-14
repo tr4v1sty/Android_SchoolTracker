@@ -69,13 +69,13 @@ public class AssessmentList extends ListActivity {
     protected void onResume() {
         super.onResume();
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        AssessmentData assessmentData = new AssessmentData(this);
 
-        datasource.open();
+        assessmentData.open();
 
-        List<Assessment> listValue = datasource.getAssessments(courseId);
+        List<Assessment> listValue = assessmentData.getAssessments(courseId);
 
-        DatabaseConnection.databaseHelper.close();
+        assessmentData.close();
 
         ArrayAdapter<Assessment> adapter;
         adapter = new ArrayAdapter<>(this,

@@ -75,14 +75,13 @@ public class CourseList extends ListActivity {
     protected void onResume() {
         super.onResume();
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        CourseData courseData = new CourseData(this);
 
-        datasource.open();
+        courseData.open();
 
-        List<Course> listValue = datasource.getCourses(termId);
+        List<Course> listValue = courseData.getCourses(termId);
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
 
         ArrayAdapter<Course> adapter;
         adapter = new ArrayAdapter<>(this,

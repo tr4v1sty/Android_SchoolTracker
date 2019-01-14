@@ -31,17 +31,17 @@ public class NotesActivity extends Activity {
         }
         courseId = extras.getLong("courseId");
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        CourseData courseData = new CourseData(this);
 
-        datasource.open();
+        courseData.open();
 
         Course cm;
-        cm = datasource.getNotes(courseId);
+        cm = courseData.getNotes(courseId);
 
         ptNotesName.setText(cm.getCourseNotesTitle());
         etNotesMultiText.setText(cm.getCourseNotesText());
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
     }
 
 
@@ -49,13 +49,13 @@ public class NotesActivity extends Activity {
         notesName = ptNotesName.getText().toString();
         notesBody = etNotesMultiText.getText().toString();
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        CourseData courseData = new CourseData(this);
 
-        datasource.open();
+        courseData.open();
 
-        datasource.updateNotes(courseId, notesName, notesBody);
+        courseData.updateNotes(courseId, notesName, notesBody);
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
 
         finish();
     }
