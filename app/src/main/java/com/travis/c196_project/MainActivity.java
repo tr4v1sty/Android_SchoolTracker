@@ -72,14 +72,14 @@ public class MainActivity extends ListActivity {
 
         super.onResume();
 
-        DatabaseConnection datasource = new DatabaseConnection(this);
+        TermData termData = new TermData(this);
 
-        datasource.open();
+        termData.open();
 
         List<Term> listValue;
-        listValue = datasource.getAllTerms();
+        listValue = termData.getAllTerms();
 
-        DatabaseConnection.databaseHelper.close();
+        termData.close();
 
         ArrayAdapter<Term> adapter;
         adapter = new ArrayAdapter<>(this,

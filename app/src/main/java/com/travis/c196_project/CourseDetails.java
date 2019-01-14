@@ -346,29 +346,27 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         course.setCourseMentorPhone(mentorPhone);
         course.setCourseMentorEmail(mentorEmail);
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        CourseData courseData = new CourseData(this);
 
-        datasource.open();
+        courseData.open();
 
-        if (courseId == 0) datasource.createCourse(course);
-        else datasource.updateCourse(course);
+        if (courseId == 0) courseData.createCourse(course);
+        else courseData.updateCourse(course);
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
 
         finish();
     }
 
     public void deleteCourse(View view) {
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        CourseData courseData = new CourseData(this);
 
-        datasource.open();
+        courseData.open();
 
-        datasource.deleteCourse(courseId);
+        courseData.deleteCourse(courseId);
 
-        DatabaseConnection.databaseHelper.close();
+        courseData.close();
 
         finish();
 

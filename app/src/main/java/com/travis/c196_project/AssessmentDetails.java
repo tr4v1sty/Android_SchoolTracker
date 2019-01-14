@@ -167,29 +167,28 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         assessment.setAssessmentType(assessmentType);
 
 
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
 
-        datasource.open();
+        AssessmentData assessmentData = new AssessmentData(this);
 
-        if (assessmentId != 0) datasource.updateAssessment(assessment);
-        else datasource.createAssessment(assessment);
+        assessmentData.open();
+
+        if (assessmentId != 0) assessmentData.updateAssessment(assessment);
+        else assessmentData.createAssessment(assessment);
 
 
-        DatabaseConnection.databaseHelper.close();
+        assessmentData.close();
 
         finish();
     }
 
     public void deleteAssessment(View view) {
-        DatabaseConnection datasource;
-        datasource = new DatabaseConnection(this);
+        AssessmentData assessmentData = new AssessmentData(this);
 
-        datasource.open();
+        assessmentData.open();
 
-        datasource.deleteAssessment(assessmentId);
+        assessmentData.deleteAssessment(assessmentId);
 
-        DatabaseConnection.databaseHelper.close();
+        assessmentData.close();
 
         finish();
     }
