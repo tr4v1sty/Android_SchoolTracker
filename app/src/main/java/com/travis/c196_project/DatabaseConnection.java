@@ -12,6 +12,8 @@ public class DatabaseConnection {
 
     private static final String [] columns_courses = {
 
+            //test
+
             DBHelper.COURSE_TERM_ID_COLUMN,
             DBHelper.COURSE_ID_COLUMN,
 
