@@ -22,10 +22,6 @@ import java.util.Calendar;
 import java.util.List;
 
 public class TermDetails extends AppCompatActivity {
-
-    public Button btnTermDetailsSave;
-    public Button btnTermDetailsAddCourse;
-    public EditText termNameEditText;
     private long termId;
 
     private EditText mTermStartDate;
@@ -33,6 +29,10 @@ public class TermDetails extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mStartDateSetListener;
     private DatePickerDialog.OnDateSetListener mEndDateSetListener;
 
+    public Button btnTermDetailsSave;
+    public Button btnTermDetailsAddCourse;
+
+    public EditText termNameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

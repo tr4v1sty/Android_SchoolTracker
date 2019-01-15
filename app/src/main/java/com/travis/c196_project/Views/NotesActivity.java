@@ -19,6 +19,22 @@ public class NotesActivity extends Activity {
     String notesName;
     String notesBody;
 
+    public void shareNote(View view) {
+
+        notesName = ptNotesName.getText().toString();
+        notesBody = etNotesMultiText.getText().toString();
+
+        Intent sendIntent = new Intent();
+
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
+        sendIntent.setType("text/plain");
+
+        startActivity(sendIntent);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,19 +80,5 @@ public class NotesActivity extends Activity {
         finish();
     }
 
-    public void shareNote(View view) {
 
-        notesName = ptNotesName.getText().toString();
-        notesBody = etNotesMultiText.getText().toString();
-
-        Intent sendIntent = new Intent();
-
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
-        sendIntent.setType("text/plain");
-
-        startActivity(sendIntent);
-
-    }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 
 public class TermData {
 
+    public static final String TERM_TABLE = "terms";
     private SQLiteDatabase database;
     private DBHelper dbHelper;
 
@@ -23,11 +24,16 @@ public class TermData {
 
     public void close() { dbHelper.close(); }
 
+    public static final String TERM_END_COLUMN = "termEnd";
+    public static final String TERM_START_COLUMN = "termStart";
+    public static final String TERM_NAME_COLUMN = "termName";
+    public static final String TERM_ID_COLUMN = "termId";
+
     private static final String [] columns_terms = {
-            DBHelper.TERM_END_COLUMN,
-            DBHelper.TERM_ID_COLUMN,
-            DBHelper.TERM_NAME_COLUMN,
-            DBHelper.TERM_START_COLUMN
+            TERM_END_COLUMN,
+            TERM_ID_COLUMN,
+            TERM_NAME_COLUMN,
+            TERM_START_COLUMN
     };
 
     public Term createTerm(Term term){
@@ -35,15 +41,15 @@ public class TermData {
         ContentValues values;
         values = new ContentValues();
 
-        values.put(DBHelper.TERM_NAME_COLUMN,
+        values.put(TERM_NAME_COLUMN,
                 term.getTermName());
-        values.put(DBHelper.TERM_START_COLUMN,
+        values.put(TERM_START_COLUMN,
                 term.getTermStart());
-        values.put(DBHelper.TERM_END_COLUMN,
+        values.put(TERM_END_COLUMN,
                 term.getTermEnd());
 
         long insertId;
-        insertId = database.insert(DBHelper.TERM_TABLE,
+        insertId = database.insert(TERM_TABLE,
                 null, values);
 
         term.setTermId(insertId);
@@ -56,25 +62,25 @@ public class TermData {
         ContentValues values;
         values = new ContentValues();
 
-        values.put(DBHelper.TERM_ID_COLUMN,
+        values.put(TERM_ID_COLUMN,
                 term.getTermId());
-        values.put(DBHelper.TERM_NAME_COLUMN,
+        values.put(TERM_NAME_COLUMN,
                 term.getTermName());
-        values.put(DBHelper.TERM_START_COLUMN,
+        values.put(TERM_START_COLUMN,
                 term.getTermStart());
-        values.put(DBHelper.TERM_END_COLUMN,
+        values.put(TERM_END_COLUMN,
                 term.getTermEnd());
 
-        database.update(DBHelper.TERM_TABLE,
+        database.update(TERM_TABLE,
                 values,
-                DBHelper.TERM_ID_COLUMN + "=" + term.getTermId(),
+                TERM_ID_COLUMN + "=" + term.getTermId(),
                 null);
     }
 
     public void deleteTerm(long id) {
 
-        database.delete(DBHelper.TERM_TABLE,
-                DBHelper.TERM_ID_COLUMN + " = " + id,
+        database.delete(TERM_TABLE,
+                TERM_ID_COLUMN + " = " + id,
                 null);
 
     }
@@ -83,7 +89,7 @@ public class TermData {
 
         List<Term> termList = new ArrayList<>();
 
-        Cursor cursor = database.query(DBHelper.TERM_TABLE,
+        Cursor cursor = database.query(TERM_TABLE,
                 columns_terms,
                 null,
                 null,
@@ -100,10 +106,10 @@ public class TermData {
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 Term term = new Term();
-                term.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.TERM_ID_COLUMN)));
-                term.setTermName(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_NAME_COLUMN)));
-                term.setTermStart(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_START_COLUMN)));
-                term.setTermEnd(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_END_COLUMN)));
+                term.setTermId(cursor.getLong(cursor.getColumnIndex(TERM_ID_COLUMN)));
+                term.setTermName(cursor.getString(cursor.getColumnIndex(TERM_NAME_COLUMN)));
+                term.setTermStart(cursor.getString(cursor.getColumnIndex(TERM_START_COLUMN)));
+                term.setTermEnd(cursor.getString(cursor.getColumnIndex(TERM_END_COLUMN)));
                 termList.add(term);
             }
         }

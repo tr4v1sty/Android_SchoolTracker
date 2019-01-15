@@ -14,6 +14,7 @@ import java.util.List;
 
 public class AssessmentData {
 
+    public static final String ASSESSMENTS_TABLE = "assessments";
     private SQLiteDatabase database;
     private DBHelper dbHelper;
 
@@ -24,13 +25,20 @@ public class AssessmentData {
     public void close() { dbHelper.close(); }
 
 
+    public static final String ASSESSMENT_NOTIFICATION_COLUMN = "assessmentNotification";
+    public static final String ASSESSMENT_GOAL_DATE_COLUMN = "assessmentGoalDate";
+    public static final String ASSESSMENT_TYPE_COLUMN = "assessmentType";
+    public static final String ASSESSMENT_NAME_COLUMN = "assessmentName";
+    public static final String ASSESSMENT_COURSE_ID_COLUMN = "assessmentCourseId";
+    public static final String ASSESSMENT_TABLE_ID_COLUMN = "assessmentId";
+
     private static final String [] columns_assessments = {
-            DBHelper.ASSESSMENT_COURSE_ID_COLUMN,
-            DBHelper.ASSESSMENT_GOAL_DATE_COLUMN,
-            DBHelper.ASSESSMENT_NAME_COLUMN,
-            DBHelper.ASSESSMENT_NOTIFICATION_COLUMN,
-            DBHelper.ASSESSMENT_TABLE_ID_COLUMN,
-            DBHelper.ASSESSMENT_TYPE_COLUMN,
+            ASSESSMENT_COURSE_ID_COLUMN,
+            ASSESSMENT_GOAL_DATE_COLUMN,
+            ASSESSMENT_NAME_COLUMN,
+            ASSESSMENT_NOTIFICATION_COLUMN,
+            ASSESSMENT_TABLE_ID_COLUMN,
+            ASSESSMENT_TYPE_COLUMN,
 
     };
 
@@ -39,19 +47,19 @@ public class AssessmentData {
         ContentValues values;
         values = new ContentValues();
 
-        values.put(DBHelper.ASSESSMENT_COURSE_ID_COLUMN,
+        values.put(ASSESSMENT_COURSE_ID_COLUMN,
                 assessment.getCourseId());
-        values.put(DBHelper.ASSESSMENT_NAME_COLUMN,
+        values.put(ASSESSMENT_NAME_COLUMN,
                 assessment.getAssessmentName());
-        values.put(DBHelper.ASSESSMENT_TYPE_COLUMN,
+        values.put(ASSESSMENT_TYPE_COLUMN,
                 assessment.getAssessmentType());
-        values.put(DBHelper.ASSESSMENT_NOTIFICATION_COLUMN,
+        values.put(ASSESSMENT_NOTIFICATION_COLUMN,
                 assessment.getAssessmentNotification());
-        values.put(DBHelper.ASSESSMENT_GOAL_DATE_COLUMN,
+        values.put(ASSESSMENT_GOAL_DATE_COLUMN,
                 assessment.getAssessmentGoalDate());
 
         long insertId;
-        insertId = database.insert(DBHelper.ASSESSMENTS_TABLE,
+        insertId = database.insert(ASSESSMENTS_TABLE,
                 null, values);
 
         assessment.setAssessmentId(insertId);
@@ -65,27 +73,27 @@ public class AssessmentData {
         ContentValues values;
         values = new ContentValues();
 
-        values.put(DBHelper.ASSESSMENT_TABLE_ID_COLUMN,
+        values.put(ASSESSMENT_TABLE_ID_COLUMN,
                 assessment.getAssessmentId());
-        values.put(DBHelper.ASSESSMENT_NAME_COLUMN,
+        values.put(ASSESSMENT_NAME_COLUMN,
                 assessment.getAssessmentName());
-        values.put(DBHelper.ASSESSMENT_TYPE_COLUMN,
+        values.put(ASSESSMENT_TYPE_COLUMN,
                 assessment.getAssessmentType());
-        values.put(DBHelper.ASSESSMENT_NOTIFICATION_COLUMN,
+        values.put(ASSESSMENT_NOTIFICATION_COLUMN,
                 assessment.getAssessmentNotification());
-        values.put(DBHelper.ASSESSMENT_GOAL_DATE_COLUMN,
+        values.put(ASSESSMENT_GOAL_DATE_COLUMN,
                 assessment.getAssessmentGoalDate());
 
-        database.update(DBHelper.ASSESSMENTS_TABLE,
+        database.update(ASSESSMENTS_TABLE,
                 values,
-                DBHelper.ASSESSMENT_TABLE_ID_COLUMN + "=" + assessment.getAssessmentId(),
+                ASSESSMENT_TABLE_ID_COLUMN + "=" + assessment.getAssessmentId(),
                 null);
     }
 
     public void deleteAssessment(long id) {
 
-        database.delete(DBHelper.ASSESSMENTS_TABLE,
-                DBHelper.ASSESSMENT_TABLE_ID_COLUMN
+        database.delete(ASSESSMENTS_TABLE,
+                ASSESSMENT_TABLE_ID_COLUMN
                         + " = " + id,
                 null);
 
@@ -98,9 +106,9 @@ public class AssessmentData {
         String[] selectionArgs = new String[]{Long.toString(courseId)};
 
         Cursor cursor;
-        cursor = database.query(DBHelper.ASSESSMENTS_TABLE,
+        cursor = database.query(ASSESSMENTS_TABLE,
                 columns_assessments,
-                DBHelper.ASSESSMENT_COURSE_ID_COLUMN + " = ?",
+                ASSESSMENT_COURSE_ID_COLUMN + " = ?",
                 selectionArgs,
                 null,
                 null,
@@ -115,11 +123,11 @@ public class AssessmentData {
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 Assessment assessment = new Assessment();
-                assessment.setAssessmentId(cursor.getLong(cursor.getColumnIndex(DBHelper.ASSESSMENT_TABLE_ID_COLUMN)));
-                assessment.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.ASSESSMENT_COURSE_ID_COLUMN)));
-                assessment.setAssessmentName(cursor.getString(cursor.getColumnIndex(DBHelper.ASSESSMENT_NAME_COLUMN)));
-                assessment.setAssessmentGoalDate(cursor.getString(cursor.getColumnIndex(DBHelper.ASSESSMENT_GOAL_DATE_COLUMN)));
-                assessment.setAssessmentType(cursor.getString(cursor.getColumnIndex(DBHelper.ASSESSMENT_TYPE_COLUMN)));
+                assessment.setAssessmentId(cursor.getLong(cursor.getColumnIndex(ASSESSMENT_TABLE_ID_COLUMN)));
+                assessment.setCourseId(cursor.getLong(cursor.getColumnIndex(ASSESSMENT_COURSE_ID_COLUMN)));
+                assessment.setAssessmentName(cursor.getString(cursor.getColumnIndex(ASSESSMENT_NAME_COLUMN)));
+                assessment.setAssessmentGoalDate(cursor.getString(cursor.getColumnIndex(ASSESSMENT_GOAL_DATE_COLUMN)));
+                assessment.setAssessmentType(cursor.getString(cursor.getColumnIndex(ASSESSMENT_TYPE_COLUMN)));
                 assessmentList.add(assessment);
             }
         }
