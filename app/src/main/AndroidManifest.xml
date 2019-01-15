@@ -20,14 +20,14 @@
 
 
         <activity android:name=".Views.CourseList" />
-        <activity android:name=".Views.CourseDetails"
+        <activity android:name=".Views.CourseView"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Views.NotesActivity"
+        <activity android:name=".Views.NoteView"
             android:theme="@style/AppTheme.NoActionBar"  />
-        <activity android:name=".Views.TermDetails"
+        <activity android:name=".Views.TermView"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Views.AssessmentList" />
-        <activity android:name=".Views.AssessmentDetails"
+        <activity android:name=".Views.AssessmentView"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <receiver

@@ -26,21 +26,21 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-public class CourseDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CourseView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Spinner mStatusSpinner;
+    private Spinner courseStatus;
     private long termId;
     private long courseId;
-    public EditText courseNameEditText;
+    public EditText courseName;
 
-    public EditText ptMentorDetailName;
-    public EditText ptMentorDetailPhone;
-    public EditText ptMentorDetailEmail;
+    public EditText mentorName;
+    public EditText mentorPhone;
+    public EditText mentorEmail;
 
-    private EditText mCourseStartDate;
-    private EditText mCourseEndDate;
-    private DatePickerDialog.OnDateSetListener mStartDateSetListener;
-    private DatePickerDialog.OnDateSetListener mEndDateSetListener;
+    private EditText courseStartDate;
+    private EditText courseEndDate;
+    private DatePickerDialog.OnDateSetListener courseStartDateListener;
+    private DatePickerDialog.OnDateSetListener courseEndDateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +50,13 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         findViewById(R.id.btnCourseDetailNotes).setOnClickListener(buttonClickListener);
         findViewById(R.id.btnCourseDetailManageAss).setOnClickListener(buttonClickListener);
 
-        courseNameEditText = findViewById(R.id.ptCourseDetailCourseName);
-        mCourseStartDate = findViewById(R.id.tvCourseDetailStartDate);
-        mCourseEndDate = findViewById(R.id.tvCourseDetailEndDate);
-        mStatusSpinner = findViewById(R.id.spinnerCourseDetailStatus);
-        ptMentorDetailName = findViewById(R.id.ptMentorDetailName);
-        ptMentorDetailPhone = findViewById(R.id.ptMentorDetailPhone);
-        ptMentorDetailEmail = findViewById(R.id.ptMentorDetailEmail);
+        courseName = findViewById(R.id.ptCourseDetailCourseName);
+        courseStartDate = findViewById(R.id.tvCourseDetailStartDate);
+        courseEndDate = findViewById(R.id.tvCourseDetailEndDate);
+        courseStatus = findViewById(R.id.spinnerCourseDetailStatus);
+        mentorName = findViewById(R.id.ptMentorDetailName);
+        mentorPhone = findViewById(R.id.ptMentorDetailPhone);
+        mentorEmail = findViewById(R.id.ptMentorDetailEmail);
 
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(this,
@@ -64,12 +64,99 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                 android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mStatusSpinner.setAdapter(adapter);
-        mStatusSpinner.setOnItemSelectedListener(this);
+        courseStatus.setAdapter(adapter);
+        courseStatus.setOnItemSelectedListener(this);
 
         Bundle extras;
         extras = getIntent().getExtras();
 
+        setupFields(adapter, extras);
+
+        courseStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            //get today's date
+            public void onClick(View view) {
+                Calendar cal;
+                cal = Calendar.getInstance();
+
+                int year;
+                year = cal.get(Calendar.YEAR);
+
+                int month;
+                month = cal.get(Calendar.MONTH);
+
+                int day;
+                day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog;
+                dialog = new DatePickerDialog(
+                        CourseView.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        courseStartDateListener,
+                        year,
+                        month,
+                        day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        courseStartDateListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month += 1;
+
+                String date;
+                date = month + "/" + day + "/" + year;
+
+                courseStartDate.setText(date);
+            }
+        };
+
+        courseEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal;
+                cal = Calendar.getInstance();
+
+                int year;
+                year = cal.get(Calendar.YEAR);
+
+                int month;
+                month = cal.get(Calendar.MONTH);
+
+                int day;
+                day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog;
+                dialog = new DatePickerDialog(
+                        CourseView.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        courseEndDateListener,
+                        year,
+                        month,
+                        day);
+
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                dialog.show();
+            }
+        });
+
+        courseEndDateListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month += 1;
+
+                String date;
+                date = month + "/" + day + "/" + year;
+
+                courseEndDate.setText(date);
+            }
+        };
+    }
+
+    private void setupFields(ArrayAdapter<CharSequence> adapter, Bundle extras) {
         if (extras == null) {
             //do nothing
         } else {
@@ -91,101 +178,18 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             String mentorEmail;
             mentorEmail = extras.getString("mentorEmail");
 
-            courseNameEditText.setText(courseName);
-            mCourseStartDate.setText(courseStart);
-            mCourseEndDate.setText(courseEnd);
-            ptMentorDetailName.setText(mentorName);
-            ptMentorDetailPhone.setText(mentorPhone);
-            ptMentorDetailEmail.setText(mentorEmail);
+            this.courseName.setText(courseName);
+            courseStartDate.setText(courseStart);
+            courseEndDate.setText(courseEnd);
+            this.mentorName.setText(mentorName);
+            this.mentorPhone.setText(mentorPhone);
+            this.mentorEmail.setText(mentorEmail);
 
             int statusPosition;
             statusPosition = adapter.getPosition(courseStatus);
 
-            mStatusSpinner.setSelection(statusPosition);
+            this.courseStatus.setSelection(statusPosition);
         }
-
-        mCourseStartDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            //get today's date
-            public void onClick(View view) {
-                Calendar cal;
-                cal = Calendar.getInstance();
-
-                int year;
-                year = cal.get(Calendar.YEAR);
-
-                int month;
-                month = cal.get(Calendar.MONTH);
-
-                int day;
-                day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog;
-                dialog = new DatePickerDialog(
-                        CourseDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mStartDateSetListener,
-                        year,
-                        month,
-                        day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
-
-        mCourseEndDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal;
-                cal = Calendar.getInstance();
-
-                int year;
-                year = cal.get(Calendar.YEAR);
-
-                int month;
-                month = cal.get(Calendar.MONTH);
-
-                int day;
-                day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog;
-                dialog = new DatePickerDialog(
-                        CourseDetails.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mEndDateSetListener,
-                        year,
-                        month,
-                        day);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                dialog.show();
-            }
-        });
-
-        mStartDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month += 1;
-
-                String date;
-                date = month + "/" + day + "/" + year;
-
-                mCourseStartDate.setText(date);
-            }
-        };
-
-        mEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month += 1;
-
-                String date;
-                date = month + "/" + day + "/" + year;
-
-                mCourseEndDate.setText(date);
-            }
-        };
     }
 
     public void setStartAlert() throws ParseException {
@@ -202,7 +206,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         String assessmentGoal;
-        assessmentGoal = mCourseStartDate.getText().toString();
+        assessmentGoal = courseStartDate.getText().toString();
 
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
@@ -240,7 +244,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         String assessmentGoal;
-        assessmentGoal = mCourseEndDate.getText().toString();
+        assessmentGoal = courseEndDate.getText().toString();
 
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
@@ -277,7 +281,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                             .show();
                 } else {
                     Intent openNotes;
-                    openNotes = new Intent(CourseDetails.this, NotesActivity.class);
+                    openNotes = new Intent(CourseView.this, NoteView.class);
 
                     Bundle extras;
                     extras = new Bundle();
@@ -296,7 +300,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                             Toast.LENGTH_LONG).show();
                 } else {
                     Intent openAssessment;
-                    openAssessment = new Intent(CourseDetails.this, AssessmentList.class);
+                    openAssessment = new Intent(CourseView.this, AssessmentList.class);
                     Bundle extras;
                     extras = new Bundle();
                     extras.putLong("courseId", courseId);
@@ -324,19 +328,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         setEndAlert();
 
         String courseName;
-        courseName = courseNameEditText.getText().toString();
+        courseName = this.courseName.getText().toString();
         String courseStart;
-        courseStart = mCourseStartDate.getText().toString();
+        courseStart = courseStartDate.getText().toString();
         String courseEnd;
-        courseEnd = mCourseEndDate.getText().toString();
+        courseEnd = courseEndDate.getText().toString();
         String courseStatus;
-        courseStatus = mStatusSpinner.getSelectedItem().toString();
+        courseStatus = this.courseStatus.getSelectedItem().toString();
         String mentorName;
-        mentorName = ptMentorDetailName.getText().toString();
+        mentorName = this.mentorName.getText().toString();
         String mentorPhone;
-        mentorPhone = ptMentorDetailPhone.getText().toString();
+        mentorPhone = this.mentorPhone.getText().toString();
         String mentorEmail;
-        mentorEmail = ptMentorDetailEmail.getText().toString();
+        mentorEmail = this.mentorEmail.getText().toString();
 
         final Course course = new Course();
 

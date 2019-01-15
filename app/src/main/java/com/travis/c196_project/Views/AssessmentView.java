@@ -25,55 +25,40 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-public class AssessmentDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private Spinner mTypeSpinner;
+public class AssessmentView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private long courseId;
     private long assessmentId;
-    public EditText assessmentNameEditText;
 
-    private EditText mGoalDate;
-    private DatePickerDialog.OnDateSetListener mGoalDateSetListener;
+    public EditText assessmentName;
+
+    private Spinner assessmentType;
+
+    private EditText assessmentDate;
+    private DatePickerDialog.OnDateSetListener assessmentDateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_details);
 
-        assessmentNameEditText = findViewById(R.id.ptAssessmentDetailName);
-        mGoalDate = findViewById(R.id.tvAssessmentDetailGoalDate);
-        mTypeSpinner = findViewById(R.id.spinnerAssessmentDetailType);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+        ArrayAdapter<CharSequence> adapter;
+        adapter = ArrayAdapter.createFromResource(
                 this, R.array.assessment_type, android.R.layout.simple_spinner_item);
+
+        assessmentName = findViewById(R.id.ptAssessmentDetailName);
+        assessmentDate = findViewById(R.id.tvAssessmentDetailGoalDate);
+        assessmentType = findViewById(R.id.spinnerAssessmentDetailType);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mTypeSpinner.setAdapter(adapter);
-        mTypeSpinner.setOnItemSelectedListener(this);
+        assessmentType.setAdapter(adapter);
+        assessmentType.setOnItemSelectedListener(this);
 
         Bundle extras;
         extras = getIntent().getExtras();
 
-        if (extras == null) {
-            //do nothing
-        } else {
+        setupFields(adapter, extras);
 
-            courseId = extras.getLong("courseId");
-            assessmentId = extras.getLong("assessmentId");
-
-            String assessmentName;
-            assessmentName = extras.getString("assessmentName");
-            String assessmentGoal;
-            assessmentGoal = extras.getString("assessmentGoalDate");
-            String assessmentType;
-            assessmentType = extras.getString("assessmentType");
-
-            assessmentNameEditText.setText(assessmentName);
-            mGoalDate.setText(assessmentGoal);
-
-            int typePosition = adapter.getPosition(assessmentType);
-            mTypeSpinner.setSelection(typePosition);
-        }
-
-        mGoalDate.setOnClickListener(new View.OnClickListener() {
+        assessmentDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal;
@@ -89,9 +74,9 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
                 day = cal.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog dialog;
-                dialog = new DatePickerDialog(AssessmentDetails.this,
+                dialog = new DatePickerDialog(AssessmentView.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mGoalDateSetListener,
+                        assessmentDateListener,
                         year,
                         month,
                         day);
@@ -102,7 +87,7 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
             }
         });
 
-        mGoalDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        assessmentDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
@@ -110,9 +95,32 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
                 String date;
                 date = month + "/" + day + "/" + year;
 
-                mGoalDate.setText(date);
+                assessmentDate.setText(date);
             }
         };
+    }
+
+    private void setupFields(ArrayAdapter<CharSequence> adapter, Bundle extras) {
+        if (extras == null) {
+            //do nothing
+        } else {
+
+            courseId = extras.getLong("courseId");
+            assessmentId = extras.getLong("assessmentId");
+
+            String assessmentName;
+            assessmentName = extras.getString("assessmentName");
+            String assessmentGoal;
+            assessmentGoal = extras.getString("assessmentGoalDate");
+            String assessmentType;
+            assessmentType = extras.getString("assessmentType");
+
+            this.assessmentName.setText(assessmentName);
+            assessmentDate.setText(assessmentGoal);
+
+            int typePosition = adapter.getPosition(assessmentType);
+            this.assessmentType.setSelection(typePosition);
+        }
     }
 
     public void setAlert() throws ParseException {
@@ -129,7 +137,7 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         String assessmentGoal;
-        assessmentGoal = mGoalDate.getText().toString();
+        assessmentGoal = assessmentDate.getText().toString();
 
         Date goalDate;
         goalDate = sdf.parse(assessmentGoal);
@@ -155,13 +163,13 @@ public class AssessmentDetails extends AppCompatActivity implements AdapterView.
         setAlert();
 
         String assessmentName;
-        assessmentName = assessmentNameEditText.getText().toString();
+        assessmentName = this.assessmentName.getText().toString();
 
         String assessmentGoal;
-        assessmentGoal = mGoalDate.getText().toString();
+        assessmentGoal = assessmentDate.getText().toString();
 
         String assessmentType;
-        assessmentType = mTypeSpinner.getSelectedItem().toString();
+        assessmentType = this.assessmentType.getSelectedItem().toString();
 
         final Assessment assessment = new Assessment();
 

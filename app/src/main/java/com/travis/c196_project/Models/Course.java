@@ -13,8 +13,8 @@ public class Course {
     private String courseStart;
     private String courseEnd;
     private String courseStatus;
-    private int courseNotificationStart;
-    private int courseNotificationEnd;
+    private int notificationStartDate;
+    private int notificationEndDate;
 
     public Course(){
 
@@ -53,12 +53,12 @@ public class Course {
         return courseStatus;
     }
 
-    public int getCourseNotificationStart() {
-        return courseNotificationStart;
+    public int getNotificationStartDate() {
+        return notificationStartDate;
     }
 
-    public int getCourseNotificationEnd() {
-        return courseNotificationEnd;
+    public int getNotificationEndDate() {
+        return notificationEndDate;
     }
 
     public String getCourseNotesTitle() {
@@ -85,12 +85,8 @@ public class Course {
         this.courseId = courseId;
     }
 
-    public void setTermId(long termId) {
-        this.termId = termId;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setNotificationEndDate(int notificationEndDate) {
+        this.notificationEndDate = notificationEndDate;
     }
 
     public void setCourseStart(String courseStart) {
@@ -105,12 +101,8 @@ public class Course {
         this.courseStatus = courseStatus;
     }
 
-    public void setCourseNotificationStart(int courseNotificationStart) {
-        this.courseNotificationStart = courseNotificationStart;
-    }
-
-    public void setCourseNotificationEnd(int courseNotificationEnd) {
-        this.courseNotificationEnd = courseNotificationEnd;
+    public void setNotificationStartDate(int notificationStartDate) {
+        this.notificationStartDate = notificationStartDate;
     }
 
     public void setCourseNotesTitle(String courseNotesTitle) {
@@ -131,6 +123,14 @@ public class Course {
 
     public void setCourseMentorEmail(String courseMentorEmail) {
         this.courseMentorEmail = courseMentorEmail;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setTermId(long termId) {
+        this.termId = termId;
     }
 
 }

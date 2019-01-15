@@ -19,18 +19,17 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class TermDetails extends AppCompatActivity {
+public class TermView extends AppCompatActivity {
     private long termId;
 
-    private EditText mTermStartDate;
-    private EditText mTermEndDate;
-    private DatePickerDialog.OnDateSetListener mStartDateSetListener;
-    private DatePickerDialog.OnDateSetListener mEndDateSetListener;
+    private EditText termStartDate;
+    private EditText termEndDate;
+    private DatePickerDialog.OnDateSetListener termStartDateListener;
+    private DatePickerDialog.OnDateSetListener termEndDateListener;
 
-    public Button btnTermDetailsSave;
-    public Button btnTermDetailsAddCourse;
+    public Button manageCoursesButton;
 
-    public EditText termNameEditText;
+    public EditText termName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +37,15 @@ public class TermDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
 
-        btnTermDetailsAddCourse = findViewById(R.id.btnTermDetailsAddCourse);
+        manageCoursesButton = findViewById(R.id.btnTermDetailsAddCourse);
 
-        btnTermDetailsAddCourse.setOnClickListener(new View.OnClickListener() {
+        manageCoursesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (termId != 0) {
                     Intent addCourse;
-                    addCourse = new Intent(TermDetails.this, CourseList.class);
+                    addCourse = new Intent(TermView.this, CourseList.class);
 
                     Bundle extras;
                     extras = new Bundle();
@@ -65,31 +64,16 @@ public class TermDetails extends AppCompatActivity {
             }
         });
 
-        termNameEditText = findViewById(R.id.ptTermDetailsName);
-        mTermStartDate = findViewById(R.id.tvTermDetailsStart);
-        mTermEndDate = findViewById(R.id.tvTermDetailsEnd);
+        termName = findViewById(R.id.ptTermDetailsName);
+        termStartDate = findViewById(R.id.tvTermDetailsStart);
+        termEndDate = findViewById(R.id.tvTermDetailsEnd);
 
         Bundle extras;
         extras = getIntent().getExtras();
 
-        if (extras != null) {
-            termId = extras.getLong("termId");
+        setupFields(extras);
 
-            String termName;
-            termName = extras.getString("termName");
-
-            String termStart;
-            termStart = extras.getString("termStart");
-
-            String termEnd;
-            termEnd = extras.getString("termEnd");
-
-            termNameEditText.setText(termName);
-            mTermStartDate.setText(termStart);
-            mTermEndDate.setText(termEnd);
-        }
-
-        mTermStartDate.setOnClickListener(new View.OnClickListener() {
+        termStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             //get today's date
             public void onClick(View view) {
@@ -107,9 +91,9 @@ public class TermDetails extends AppCompatActivity {
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
-                        TermDetails.this,
+                        TermView.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mStartDateSetListener,
+                        termStartDateListener,
                         year,
                         month,
                         day);
@@ -120,7 +104,19 @@ public class TermDetails extends AppCompatActivity {
             }
         });
 
-        mTermEndDate.setOnClickListener(new View.OnClickListener() {
+        termStartDateListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month += 1;
+
+                String date;
+                date = month + "/" + day + "/" + year;
+
+                termStartDate.setText(date);
+            }
+        };
+
+        termEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar cal;
@@ -137,9 +133,9 @@ public class TermDetails extends AppCompatActivity {
 
                 DatePickerDialog dialog;
                 dialog = new DatePickerDialog(
-                        TermDetails.this,
+                        TermView.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mEndDateSetListener,
+                        termEndDateListener,
                         year,
                         month,
                         day);
@@ -150,19 +146,7 @@ public class TermDetails extends AppCompatActivity {
             }
         });
 
-        mStartDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month += 1;
-
-                String date;
-                date = month + "/" + day + "/" + year;
-
-                mTermStartDate.setText(date);
-            }
-        };
-
-        mEndDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        termEndDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 //January = 0 need to add 1 to get correct month
@@ -171,20 +155,41 @@ public class TermDetails extends AppCompatActivity {
                 String date;
                 date = month + "/" + day + "/" + year;
 
-                mTermEndDate.setText(date);
+                termEndDate.setText(date);
             }
         };
     }
 
+    private void setupFields(Bundle extras) {
+        if (extras == null) {
+            //do nothing
+        } else {
+            termId = extras.getLong("termId");
+
+            String termName;
+            termName = extras.getString("termName");
+
+            String termStart;
+            termStart = extras.getString("termStart");
+
+            String termEnd;
+            termEnd = extras.getString("termEnd");
+
+            this.termName.setText(termName);
+            termStartDate.setText(termStart);
+            termEndDate.setText(termEnd);
+        }
+    }
+
     public void saveTerm(View view) {
         String termName;
-        termName = termNameEditText.getText().toString();
+        termName = this.termName.getText().toString();
 
         String termStart;
-        termStart = mTermStartDate.getText().toString();
+        termStart = termStartDate.getText().toString();
 
         String termEnd;
-        termEnd = mTermEndDate.getText().toString();
+        termEnd = termEndDate.getText().toString();
 
         final Term term = new Term();
 

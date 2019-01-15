@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:gravity="top|center_vertical"
-    tools:context=".Views.NotesActivity">
+    tools:context=".Views.NoteView">
 
     <Button
         android:id="@+id/btnNotesSave"
@@ -96,32 +96,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--<android.support.v4.widget.NestedScrollView-->
-        <!--android:id="@+id/nestedScrollView"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="118dp"-->
-        <!--android:layout_marginStart="9dp"-->
-        <!--android:layout_marginLeft="9dp"-->
-        <!--android:layout_marginEnd="9dp"-->
-        <!--android:layout_marginRight="9dp"-->
-        <!--android:fillViewport="true"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent">-->
-
-
-        <!--&lt;!&ndash;<EditText&ndash;&gt;-->
-            <!--&lt;!&ndash;android:id="@+id/etNotesMultiText"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:background="@android:color/white"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:ems="10"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:hint="@string/information"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:inputType="textMultiLine"&ndash;&gt;-->
-            <!--&lt;!&ndash;android:textAlignment="center" />&ndash;&gt;-->
-
-
-    <!--</android.support.v4.widget.NestedScrollView>-->
 
 </android.support.constraint.ConstraintLayout>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.CourseDetails"
+    tools:context=".Views.CourseView"
     android:background="@color/colorPrimary">
 
 
@@ -116,13 +116,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
-
-            <!--app:layout_constraintTop_toBottomOf="@+id/editText5"-->
-
-            <!--app:layout_constraintTop_toBottomOf="@+id/ptCourseDetailEndDate"-->
-
-            <!--app:layout_constraintTop_toBottomOf="@+id/ptCourseDetailStartDate"-->
-
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/constraintLayout2"
                 android:layout_width="369dp"
@@ -174,8 +167,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-
-            <!--app:layout_constraintTop_toBottomOf="@+id/ptCourseDetailEndDate"-->
 
             <EditText
                 android:id="@+id/ptMentorDetailName"
@@ -231,42 +222,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailPhone" />
-
-            <!--<EditText-->
-            <!--android:id="@+id/ptMentor2DetailName"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="10dp"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:layout_marginTop="53dp"-->
-            <!--android:ems="10"-->
-            <!--android:hint="@string/mentorName"-->
-            <!--android:inputType="textPersonName"-->
-            <!--android:textAlignment="center" />-->
-
-            <!--<EditText-->
-            <!--android:id="@+id/ptMentor2DetailPhone"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="10dp"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:ems="10"-->
-            <!--android:hint="@string/mentorPhoneEx"-->
-            <!--android:inputType="phone"-->
-            <!--android:textAlignment="center" />-->
-
-            <!--<EditText-->
-            <!--android:id="@+id/ptMentor2DetailEmail"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="10dp"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:ems="10"-->
-            <!--android:hint="@string/mentorEmailEx"-->
-            <!--android:inputType="textEmailAddress"-->
-            <!--android:textAlignment="center" />-->
 
             <Button
                 android:id="@+id/btnCourseDetailManageAss"

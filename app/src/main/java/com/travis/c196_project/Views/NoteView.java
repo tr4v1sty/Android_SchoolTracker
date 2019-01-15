@@ -10,24 +10,24 @@ import com.travis.c196_project.Data.CourseData;
 import com.travis.c196_project.Models.Course;
 import com.travis.c196_project.R;
 
-public class NotesActivity extends Activity {
+public class NoteView extends Activity {
 
-    public EditText ptNotesName;
-    public EditText etNotesMultiText;
+    public EditText noteName;
+    public EditText noteDetail;
     private long courseId;
-    String notesName;
-    String notesBody;
+    String notesNameString;
+    String notesDetailString;
 
     public void shareNote(View view) {
 
-        notesName = ptNotesName.getText().toString();
-        notesBody = etNotesMultiText.getText().toString();
+        notesNameString = noteName.getText().toString();
+        notesDetailString = noteDetail.getText().toString();
 
         Intent sendIntent = new Intent();
 
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesName);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, notesBody);
+        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesNameString);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, notesDetailString);
         sendIntent.setType("text/plain");
 
         startActivity(sendIntent);
@@ -39,40 +39,43 @@ public class NotesActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        ptNotesName = findViewById(R.id.ptNotesName);
-        etNotesMultiText = findViewById(R.id.etNotesMultiText);
+        noteName = findViewById(R.id.ptNotesName);
+        noteDetail = findViewById(R.id.etNotesMultiText);
 
         Bundle extras;
         extras = getIntent().getExtras();
 
+        setupFields(extras);
+    }
+
+    private void setupFields(Bundle extras) {
         if (extras == null) {
             return;
         }
         courseId = extras.getLong("courseId");
 
         CourseData courseData = new CourseData(this);
-
         courseData.open();
 
         Course cm;
         cm = courseData.getNotes(courseId);
 
-        ptNotesName.setText(cm.getCourseNotesTitle());
-        etNotesMultiText.setText(cm.getCourseNotesText());
+        noteName.setText(cm.getCourseNotesTitle());
+        noteDetail.setText(cm.getCourseNotesText());
 
         courseData.close();
     }
 
 
     public void saveNote(View view) {
-        notesName = ptNotesName.getText().toString();
-        notesBody = etNotesMultiText.getText().toString();
+        notesNameString = noteName.getText().toString();
+        notesDetailString = noteDetail.getText().toString();
 
         CourseData courseData = new CourseData(this);
 
         courseData.open();
 
-        courseData.updateNotes(courseId, notesName, notesBody);
+        courseData.updateNotes(courseId, notesNameString, notesDetailString);
 
         courseData.close();
 

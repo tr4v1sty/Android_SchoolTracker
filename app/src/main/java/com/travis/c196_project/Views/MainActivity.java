@@ -15,21 +15,20 @@ import android.widget.ListView;
 
 public class MainActivity extends ListActivity {
 
-    public Button btnAddTerm;
+    public Button addNewTermButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity);
 
-
-        btnAddTerm = findViewById(R.id.btnAddTerm);
-        btnAddTerm.setOnClickListener(new View.OnClickListener() {
+        addNewTermButton = findViewById(R.id.btnAddTerm);
+        addNewTermButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 Intent addTerm;
-                addTerm = new Intent(MainActivity.this, TermDetails.class);
+                addTerm = new Intent(MainActivity.this, TermView.class);
 
                 startActivity(addTerm);
             }
@@ -48,7 +47,7 @@ public class MainActivity extends ListActivity {
 
     public void viewTermList(Term term){
         Intent intent;
-        intent = new Intent(MainActivity.this, TermDetails.class);
+        intent = new Intent(MainActivity.this, TermView.class);
 
         intent.putExtra("termId", term.getTermId());
         intent.putExtra("termName", term.getTermName());

@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class CourseList extends ListActivity {
-    public Button btnAddCourse;
+    public Button addNewCourseButton;
     private long termId;
 
     @Override
@@ -22,12 +22,12 @@ public class CourseList extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
 
-        btnAddCourse = findViewById(R.id.btnAddCourse);
-        btnAddCourse.setOnClickListener(new View.OnClickListener() {
+        addNewCourseButton = findViewById(R.id.btnAddCourse);
+        addNewCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent addCourse;
-                addCourse = new Intent(CourseList.this, CourseDetails.class);
+                addCourse = new Intent(CourseList.this, CourseView.class);
 
                 addCourse.putExtra("termId", termId);
 
@@ -52,7 +52,7 @@ public class CourseList extends ListActivity {
     public void viewCourseList(Course course){
 
         Intent intent;
-        intent = new Intent(CourseList.this, CourseDetails.class);
+        intent = new Intent(CourseList.this, CourseView.class);
         intent.putExtra("termId", course.getCourseTermId());
         intent.putExtra("courseId", course.getCourseId());
         intent.putExtra("courseName", course.getCourseName());

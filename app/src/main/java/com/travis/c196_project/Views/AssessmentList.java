@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class AssessmentList extends ListActivity {
-    public Button btnAddAssessment;
+    public Button addNewAssessmentButton;
     private long courseId;
 
     @Override
@@ -23,11 +23,11 @@ public class AssessmentList extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_list);
 
-        btnAddAssessment = findViewById(R.id.btnAddAssessment);
-        btnAddAssessment.setOnClickListener(new View.OnClickListener() {
+        addNewAssessmentButton = findViewById(R.id.btnAddAssessment);
+        addNewAssessmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addAssessment = new Intent(AssessmentList.this, AssessmentDetails.class);
+                Intent addAssessment = new Intent(AssessmentList.this, AssessmentView.class);
 
                 addAssessment.putExtra("courseId", courseId);
 
@@ -55,7 +55,7 @@ public class AssessmentList extends ListActivity {
 
     private void viewAssessment(Assessment assessment){
 
-        Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
+        Intent intent = new Intent(AssessmentList.this, AssessmentView.class);
 
         intent.putExtra("courseId", assessment.getCourseId());
         intent.putExtra("assessmentId", assessment.getAssessmentId());
