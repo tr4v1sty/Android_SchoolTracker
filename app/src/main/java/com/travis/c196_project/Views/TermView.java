@@ -37,7 +37,7 @@ public class TermView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
 
-        manageCoursesButton = findViewById(R.id.btnTermDetailsAddCourse);
+        manageCoursesButton = findViewById(R.id.manageCoursesButtonId);
 
         manageCoursesButton.setOnClickListener(new View.OnClickListener() {
             @Override

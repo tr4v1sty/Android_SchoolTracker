@@ -14,8 +14,8 @@ import android.app.PendingIntent;
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        PendingIntent mIntent;
-        mIntent = PendingIntent.getActivity(context,
+        PendingIntent intent1;
+        intent1 = PendingIntent.getActivity(context,
                 0,
                 new Intent(context, MainActivity.class),
                 0);
@@ -26,7 +26,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentInfo("You have a school-related occurring today")
                 .setDefaults(Notification.DEFAULT_ALL);
 
-        mBuilder.setContentIntent(mIntent);
+        mBuilder.setContentIntent(intent1);
         mBuilder.setAutoCancel(true);
 
         NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
