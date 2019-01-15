@@ -38,7 +38,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/colorAccent"
-                android:text="@string/addCourses"
+                android:text="@string/add_a_new_course"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 

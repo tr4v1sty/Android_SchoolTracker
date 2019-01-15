@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="course_detail">
+    <string-array name="type_of_course_spinner">
         <item>Plan to take</item>
         <item>In Progress</item>
         <item>Completed</item>

@@ -43,7 +43,7 @@ public class AssessmentView extends AppCompatActivity implements AdapterView.OnI
 
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(
-                this, R.array.assessment_type, android.R.layout.simple_spinner_item);
+                this, R.array.type_of_assessment, android.R.layout.simple_spinner_item);
 
         assessmentName = findViewById(R.id.ptAssessmentDetailName);
         assessmentDate = findViewById(R.id.tvAssessmentDetailGoalDate);

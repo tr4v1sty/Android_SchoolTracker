@@ -60,7 +60,7 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
 
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(this,
-                R.array.course_detail,
+                R.array.type_of_course_spinner,
                 android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

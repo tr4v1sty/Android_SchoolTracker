@@ -39,7 +39,7 @@
             android:layout_marginEnd="8dp"
             android:background="@color/colorAccent"
             android:paddingBottom="8dp"
-            android:text="@string/addTerm"
+            android:text="@string/add_a_new_term"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="18sp" />

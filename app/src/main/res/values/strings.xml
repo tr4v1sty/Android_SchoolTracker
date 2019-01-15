@@ -1,25 +1,16 @@
 <resources>
     <string name="app_name"> </string>
-
-    <!--main_landing-->
-    <string name="landing_terms">View all Terms</string>
-    <string name="landing_courses">Courses</string>
-    <string name="landing_mentors">Mentors</string>
-    <string name="landing_assessments">Assessments</string>
-
-    <!--term_list-->
-    <string name="addTerm">Add a New Term</string>
-    <string name="deleteTerm">Delete Term</string>
-
-    <!--term_details-->
+    <string name="view_terms_button">View all Terms</string>
+    <string name="view_courses_button">Courses</string>
+    <string name="view_mentors_button">Mentors</string>
+    <string name="view_assessments_button">Assessments</string>
+    <string name="add_a_new_term">Add a New Term</string>
+    <string name="delete_this_term">Delete Term</string>
     <string name="name">Name</string>
     <string name="termName">Term Name</string>
-    <!--course_list-->
-    <string name="addCourses">Add a New Course</string>
-
-    <!--course_details-->
-    <string name="startDateEx">Start Date</string>
-    <string name="endDateEx">End Date</string>
+    <string name="add_a_new_course">Add a New Course</string>
+    <string name="startDate">Start Date</string>
+    <string name="endDate">End Date</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="courseName">Course Name</string>
     <string name="manageAssessments">Assessments</string>
@@ -29,29 +20,18 @@
     <string name="add">Add</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
-
-    <!--mentor_list-->
     <string name="addMentor">Add Mentor</string>
-
-    <!--notes-->
     <string name="notesName">Title</string>
     <string name="information">Information</string>
-
-    <!--notes_list-->
     <string name="addNotes">Add Notes</string>
-
-    <!--assessment_list-->
     <string name="addAssessment">Add a New Assessment</string>
-
-    <!--assessment_details-->
     <string name="assessmentName">Assessment Name</string>
     <string name="goalDate">Goal Date</string>
-
-    <!--mentor_details-->
     <string name="mentorName">Mentor Name</string>
-    <string name="mentorPhoneEx">1-800-227-1000</string>
-    <string name="mentorEmailEx">email@wgu.edu</string>
+    <string name="mentor_phone_hint">1–800-227-1000</string>
+    <string name="mentor_email_hint">example@wgu.edu</string>
     <string name="viewCourses">View Courses</string>
     <string name="manageAssessmentsCourses">Manage Courses</string>
     <string name="notesTitle">NOTE</string>
+    <string name="delete_button">Delete</string>
 </resources>
