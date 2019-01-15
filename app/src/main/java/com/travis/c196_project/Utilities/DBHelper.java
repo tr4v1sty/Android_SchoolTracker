@@ -9,23 +9,23 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "SchoolInfo.db";
     private static final int DB_VERSION = 1;
 
-    public DBHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATION_STRING_FOR_TERMS_TABLE);
-        db.execSQL(CREATION_STRING_FOR_COURSES_TABLE);
         db.execSQL(CREATION_STRING_FOR_ASSESSMENTS_TABLE);
+        db.execSQL(CREATION_STRING_FOR_COURSES_TABLE);
+        db.execSQL(CREATION_STRING_FOR_TERMS_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TERM_TABLE);
-        db.execSQL("DROP TABLE IF EXISTS " + COURSES_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + ASSESSMENTS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + COURSES_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TERM_TABLE);
         onCreate(db);
+    }
+
+    public DBHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     public static final String TERM_TABLE = "terms";
