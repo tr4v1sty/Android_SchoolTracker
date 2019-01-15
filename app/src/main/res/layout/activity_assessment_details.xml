@@ -22,16 +22,16 @@
         android:onClick="saveAssessment"
         android:text="@string/save"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
 
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAssessmentDetailType" />
 
     <EditText
         android:id="@+id/ptAssessmentDetailName"
-        android:layout_width="333dp"
+        android:layout_width="315dp"
         android:layout_height="68dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="@string/assessmentName"
@@ -44,7 +44,7 @@
 
     <EditText
         android:id="@+id/tvAssessmentDetailGoalDate"
-        android:layout_width="367dp"
+        android:layout_width="315dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -80,7 +80,7 @@
 
     <Spinner
         android:id="@+id/spinnerAssessmentDetailType"
-        android:layout_width="370dp"
+        android:layout_width="315dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -130,13 +130,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:background="@color/colorAccent"
 
+        android:background="@color/colorAccent"
         android:onClick="deleteAssessment"
         android:text="DELETE"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAssessmentDetailType" />
 
 </android.support.constraint.ConstraintLayout>
