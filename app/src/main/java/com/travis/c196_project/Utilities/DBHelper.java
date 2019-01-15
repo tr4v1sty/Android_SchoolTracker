@@ -1,12 +1,11 @@
 package com.travis.c196_project.Utilities;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 import com.travis.c196_project.Data.AssessmentData;
 import com.travis.c196_project.Data.CourseData;
 import com.travis.c196_project.Data.TermData;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 

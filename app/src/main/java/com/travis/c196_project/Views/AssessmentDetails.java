@@ -1,7 +1,12 @@
 package com.travis.c196_project.Views;
+
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,22 +14,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import com.travis.c196_project.Data.AssessmentData;
+import com.travis.c196_project.Models.Assessment;
+import com.travis.c196_project.R;
+import com.travis.c196_project.Utilities.NotificationReceiver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
-
-import com.travis.c196_project.Data.AssessmentData;
-import com.travis.c196_project.Models.Assessment;
-import com.travis.c196_project.R;
-import com.travis.c196_project.Utilities.NotificationReceiver;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class AssessmentDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private Spinner mTypeSpinner;

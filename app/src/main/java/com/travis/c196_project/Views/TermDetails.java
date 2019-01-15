@@ -2,24 +2,22 @@ package com.travis.c196_project.Views;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import java.util.Calendar;
+import java.util.List;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import com.travis.c196_project.Data.CourseData;
 import com.travis.c196_project.Data.TermData;
 import com.travis.c196_project.Models.Course;
 import com.travis.c196_project.Models.Term;
 import com.travis.c196_project.R;
-
-import java.util.Calendar;
-import java.util.List;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class TermDetails extends AppCompatActivity {
     private long termId;
@@ -188,8 +186,7 @@ public class TermDetails extends AppCompatActivity {
         String termEnd;
         termEnd = mTermEndDate.getText().toString();
 
-        final Term term;
-        term = new Term();
+        final Term term = new Term();
 
         term.setTermId(termId);
         term.setTermName(termName);
@@ -215,11 +212,9 @@ public class TermDetails extends AppCompatActivity {
     public void deleteTerm(View view) {
 
         TermData termData = new TermData(this);
-
         termData.open();
 
         CourseData courseData = new CourseData(this);
-
         courseData.open();
 
         List<Course> listValue;
@@ -228,8 +223,8 @@ public class TermDetails extends AppCompatActivity {
         if (listValue.isEmpty()) termData.deleteTerm(termId);
         else {
             Toast.makeText(this,
-                    "Cannot delete a term with courses associated to it",
-                    Toast.LENGTH_SHORT).show();
+                    "ERROR: You must first delete all associated courses",
+                    Toast.LENGTH_LONG).show();
         }
 
         courseData.close();

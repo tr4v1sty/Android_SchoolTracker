@@ -2,15 +2,12 @@ package com.travis.c196_project.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import com.travis.c196_project.Models.Assessment;
+import com.travis.c196_project.Utilities.DBHelper;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.travis.c196_project.Models.Assessment;
-import com.travis.c196_project.Utilities.DBHelper;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class AssessmentData {
 
@@ -23,7 +20,6 @@ public class AssessmentData {
     public void open() throws SQLException { database = dbHelper.getWritableDatabase(); }
 
     public void close() { dbHelper.close(); }
-
 
     public static final String ASSESSMENT_NOTIFICATION_COLUMN = "assessmentNotification";
     public static final String ASSESSMENT_GOAL_DATE_COLUMN = "assessmentGoalDate";
@@ -44,8 +40,7 @@ public class AssessmentData {
 
     public Assessment createAssessment(Assessment assessment) {
 
-        ContentValues values;
-        values = new ContentValues();
+        ContentValues values = new ContentValues();
 
         values.put(ASSESSMENT_COURSE_ID_COLUMN,
                 assessment.getCourseId());
@@ -67,11 +62,9 @@ public class AssessmentData {
         return assessment;
     }
 
-
     public void updateAssessment(Assessment assessment) {
 
-        ContentValues values;
-        values = new ContentValues();
+        ContentValues values = new ContentValues();
 
         values.put(ASSESSMENT_TABLE_ID_COLUMN,
                 assessment.getAssessmentId());

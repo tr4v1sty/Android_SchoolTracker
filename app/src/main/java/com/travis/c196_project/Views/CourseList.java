@@ -2,18 +2,16 @@ package com.travis.c196_project.Views;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import java.util.List;
 import android.os.Bundle;
 import android.view.View;
+import com.travis.c196_project.Data.CourseData;
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.R;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
-import com.travis.c196_project.Data.CourseData;
-import com.travis.c196_project.Models.Course;
-import com.travis.c196_project.R;
-
-import java.util.List;
 
 public class CourseList extends ListActivity {
     public Button btnAddCourse;
@@ -83,7 +81,6 @@ public class CourseList extends ListActivity {
         super.onResume();
 
         CourseData courseData = new CourseData(this);
-
         courseData.open();
 
         List<Course> listValue = courseData.getCourses(termId);

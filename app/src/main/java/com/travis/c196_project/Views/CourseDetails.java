@@ -1,5 +1,9 @@
 package com.travis.c196_project.Views;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -10,6 +14,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import com.travis.c196_project.Data.CourseData;
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.R;
+import com.travis.c196_project.Utilities.NotificationReceiver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -17,16 +25,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
-
-import com.travis.c196_project.Data.CourseData;
-import com.travis.c196_project.Models.Course;
-import com.travis.c196_project.R;
-import com.travis.c196_project.Utilities.NotificationReceiver;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class CourseDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -274,7 +272,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             if (i == R.id.btnCourseDetailNotes) {
                 if (courseId == 0) {
                     Toast.makeText(getApplicationContext(),
-                            "You must save a course before adding notes",
+                            "ERROR: You must first save this course ",
                             Toast.LENGTH_LONG)
                             .show();
                 } else {
@@ -294,7 +292,8 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             } else if (i == R.id.btnCourseDetailManageAss) {
                 if (courseId == 0) {
                     Toast.makeText(getApplicationContext(),
-                            "You must save a course before adding assessments", Toast.LENGTH_LONG).show();
+                            "ERROR: You must first delete all associated assessments",
+                            Toast.LENGTH_LONG).show();
                 } else {
                     Intent openAssessment;
                     openAssessment = new Intent(CourseDetails.this, AssessmentList.class);

@@ -2,11 +2,10 @@ package com.travis.c196_project.Views;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-
 import com.travis.c196_project.Data.CourseData;
 import com.travis.c196_project.Models.Course;
 import com.travis.c196_project.R;

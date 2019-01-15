@@ -4,16 +4,17 @@ public class Course {
 
     private long courseId;
     private long termId;
+    private String courseNotesTitle;
+    private String courseNotesText;
+    private String courseMentorName;
+    private String courseMentorPhone;
+    private String courseMentorEmail;
     private String courseName;
     private String courseStart;
     private String courseEnd;
     private String courseStatus;
     private int courseNotificationStart;
-    private int courseNotificationEnd;private String courseNotesTitle;
-    private String courseNotesText;
-    private String courseMentorName;
-    private String courseMentorPhone;
-    private String courseMentorEmail;
+    private int courseNotificationEnd;
 
     public Course(){
 

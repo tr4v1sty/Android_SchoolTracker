@@ -3,10 +3,10 @@ package com.travis.c196_project.Models;
 public class Assessment {
 
     private long assessmentId;
-    private long courseId;
     private String assessmentName;
     private String assessmentType;
     private String assessmentGoalDate;
+    private long courseId;
 
     public Assessment() {
     }

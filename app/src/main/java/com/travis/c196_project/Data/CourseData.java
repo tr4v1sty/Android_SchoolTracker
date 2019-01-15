@@ -2,13 +2,11 @@ package com.travis.c196_project.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.Utilities.DBHelper;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.travis.c196_project.Models.Course;
-import com.travis.c196_project.Utilities.DBHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +63,7 @@ public class CourseData {
 
     public Course createCourse(Course course) {
 
-        ContentValues values;
-        values = new ContentValues();
+        ContentValues values = new ContentValues();
 
         values.put(COURSE_TERM_ID_COLUMN,
                 course.getCourseTermId());
@@ -93,8 +90,7 @@ public class CourseData {
         values.put(COURSE_NOTES_TEXT_COLUMN,
                 course.getCourseNotesText());
 
-        long insertId;
-        insertId = database.insert(COURSES_TABLE, null, values);
+        long insertId = database.insert(COURSES_TABLE, null, values);
 
         course.setCourseId(insertId);
 
@@ -104,8 +100,7 @@ public class CourseData {
 
     public void updateCourse(Course course) {
 
-        ContentValues values;
-        values = new ContentValues();
+        ContentValues values = new ContentValues();
 
         values.put(COURSE_ID_COLUMN,
                 course.getCourseId());

@@ -1,26 +1,21 @@
 package com.travis.c196_project.Views;
 
+import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import com.travis.c196_project.Data.TermData;
+import com.travis.c196_project.Models.Term;
+import com.travis.c196_project.R;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.travis.c196_project.Data.TermData;
-import com.travis.c196_project.Models.Term;
-import com.travis.c196_project.R;
-
-import java.util.List;
-
 public class MainActivity extends ListActivity {
 
     public Button btnAddTerm;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
