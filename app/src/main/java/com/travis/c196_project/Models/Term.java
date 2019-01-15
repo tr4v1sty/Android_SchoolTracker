@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Models;
 
 public class Term {
 
@@ -7,7 +7,7 @@ public class Term {
     private String termEnd;
     private String termName;
 
-    Term() {
+    public Term() {
 
     }
 
@@ -16,27 +16,27 @@ public class Term {
         return termName + "\n" + termStart + " - " + termEnd;
     }
 
-    long getTermId() {
+    public long getTermId() {
         return termId;
     }
 
-    void setTermId(long termId) {
+    public void setTermId(long termId) {
         this.termId = termId;
     }
 
-    String getTermStart() {
+    public String getTermStart() {
         return termStart;
     }
 
-    void setTermStart(String termStart) {
+    public void setTermStart(String termStart) {
         this.termStart = termStart;
     }
 
-    String getTermEnd() {
+    public String getTermEnd() {
         return termEnd;
     }
 
-    void setTermEnd(String termEnd) {
+    public void setTermEnd(String termEnd) {
         this.termEnd = termEnd;
     }
 

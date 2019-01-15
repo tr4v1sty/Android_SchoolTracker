@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".Views.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,19 +19,19 @@
         </activity>
 
 
-        <activity android:name=".CourseList" />
-        <activity android:name=".CourseDetails"
+        <activity android:name=".Views.CourseList" />
+        <activity android:name=".Views.CourseDetails"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NotesActivity"
+        <activity android:name=".Views.NotesActivity"
             android:theme="@style/AppTheme.NoActionBar"  />
-        <activity android:name=".TermDetails"
+        <activity android:name=".Views.TermDetails"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".AssessmentList" />
-        <activity android:name=".AssessmentDetails"
+        <activity android:name=".Views.AssessmentList" />
+        <activity android:name=".Views.AssessmentDetails"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <receiver
-            android:name=".NotificationReceiver"
+            android:name=".Utilities.NotificationReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>

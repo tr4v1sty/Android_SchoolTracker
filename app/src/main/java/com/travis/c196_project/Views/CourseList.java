@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Views;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -8,6 +8,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.travis.c196_project.Data.CourseData;
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.R;
+
 import java.util.List;
 
 public class CourseList extends ListActivity {

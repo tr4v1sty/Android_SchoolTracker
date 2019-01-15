@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Models;
 
 public class Course {
 
@@ -15,7 +15,7 @@ public class Course {
     private String courseMentorPhone;
     private String courseMentorEmail;
 
-    Course(){
+    public Course(){
 
     }
 
@@ -28,11 +28,11 @@ public class Course {
                 + courseEnd;
     }
 
-    long getCourseId() {
+    public long getCourseId() {
         return courseId;
     }
 
-    long getCourseTermId() {
+    public long getCourseTermId() {
         return termId;
     }
 
@@ -40,51 +40,51 @@ public class Course {
         return courseName;
     }
 
-    String getCourseStart() {
+    public String getCourseStart() {
         return courseStart;
     }
 
-    String getCourseEnd() {
+    public String getCourseEnd() {
         return courseEnd;
     }
 
-    String getCourseStatus() {
+    public String getCourseStatus() {
         return courseStatus;
     }
 
-    int getCourseNotificationStart() {
+    public int getCourseNotificationStart() {
         return courseNotificationStart;
     }
 
-    int getCourseNotificationEnd() {
+    public int getCourseNotificationEnd() {
         return courseNotificationEnd;
     }
 
-    String getCourseNotesTitle() {
+    public String getCourseNotesTitle() {
         return courseNotesTitle;
     }
 
-    String getCourseNotesText() {
+    public String getCourseNotesText() {
         return courseNotesText;
     }
 
-    String getCourseMentorName() {
+    public String getCourseMentorName() {
         return courseMentorName;
     }
 
-    String getCourseMentorPhone() {
+    public String getCourseMentorPhone() {
         return courseMentorPhone;
     }
 
-    String getCourseMentorEmail() {
+    public String getCourseMentorEmail() {
         return courseMentorEmail;
     }
 
-    void setCourseId(long courseId) {
+    public void setCourseId(long courseId) {
         this.courseId = courseId;
     }
 
-    void setTermId(long termId) {
+    public void setTermId(long termId) {
         this.termId = termId;
     }
 
@@ -92,43 +92,43 @@ public class Course {
         this.courseName = courseName;
     }
 
-    void setCourseStart(String courseStart) {
+    public void setCourseStart(String courseStart) {
         this.courseStart = courseStart;
     }
 
-    void setCourseEnd(String courseEnd) {
+    public void setCourseEnd(String courseEnd) {
         this.courseEnd = courseEnd;
     }
 
-    void setCourseStatus(String courseStatus) {
+    public void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
     }
 
-    void setCourseNotificationStart(int courseNotificationStart) {
+    public void setCourseNotificationStart(int courseNotificationStart) {
         this.courseNotificationStart = courseNotificationStart;
     }
 
-    void setCourseNotificationEnd(int courseNotificationEnd) {
+    public void setCourseNotificationEnd(int courseNotificationEnd) {
         this.courseNotificationEnd = courseNotificationEnd;
     }
 
-    void setCourseNotesTitle(String courseNotesTitle) {
+    public void setCourseNotesTitle(String courseNotesTitle) {
         this.courseNotesTitle = courseNotesTitle;
     }
 
-    void setCourseNotesText(String courseNotesText) {
+    public void setCourseNotesText(String courseNotesText) {
         this.courseNotesText = courseNotesText;
     }
 
-    void setCourseMentorName(String courseMentorName) {
+    public void setCourseMentorName(String courseMentorName) {
         this.courseMentorName = courseMentorName;
     }
 
-    void setCourseMentorPhone(String courseMentorPhone) {
+    public void setCourseMentorPhone(String courseMentorPhone) {
         this.courseMentorPhone = courseMentorPhone;
     }
 
-    void setCourseMentorEmail(String courseMentorEmail) {
+    public void setCourseMentorEmail(String courseMentorEmail) {
         this.courseMentorEmail = courseMentorEmail;
     }
 

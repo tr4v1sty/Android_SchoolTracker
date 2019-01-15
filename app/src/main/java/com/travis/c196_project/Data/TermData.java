@@ -1,10 +1,13 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.travis.c196_project.Utilities.DBHelper;
+import com.travis.c196_project.Models.Term;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ public class TermData {
             DBHelper.TERM_START_COLUMN
     };
 
-    Term createTerm(Term term){
+    public Term createTerm(Term term){
 
         ContentValues values;
         values = new ContentValues();
@@ -48,7 +51,7 @@ public class TermData {
         return term;
     }
 
-    void updateTerm(Term term) {
+    public void updateTerm(Term term) {
 
         ContentValues values;
         values = new ContentValues();
@@ -76,7 +79,7 @@ public class TermData {
 
     }
 
-    List<Term> getAllTerms() {
+    public List<Term> getAllTerms() {
 
         List<Term> termList = new ArrayList<>();
 

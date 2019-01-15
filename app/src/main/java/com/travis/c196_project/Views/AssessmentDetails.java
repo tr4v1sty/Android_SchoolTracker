@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Views;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -15,6 +15,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+
+import com.travis.c196_project.Data.AssessmentData;
+import com.travis.c196_project.Models.Assessment;
+import com.travis.c196_project.R;
+import com.travis.c196_project.Utilities.NotificationReceiver;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

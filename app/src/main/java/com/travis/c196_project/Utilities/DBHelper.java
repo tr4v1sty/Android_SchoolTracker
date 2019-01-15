@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Utilities;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

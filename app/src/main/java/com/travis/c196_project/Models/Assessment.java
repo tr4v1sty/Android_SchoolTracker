@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Models;
 
 public class Assessment {
 
@@ -9,7 +9,7 @@ public class Assessment {
     private String assessmentGoalDate;
     private int assessmentNotification;
 
-    Assessment() {
+    public Assessment() {
     }
 
     @Override
@@ -20,11 +20,11 @@ public class Assessment {
                 + assessmentType;
     }
 
-    long getAssessmentId() {
+    public long getAssessmentId() {
         return assessmentId;
     }
 
-    long getCourseId() {
+    public long getCourseId() {
         return courseId;
     }
 
@@ -32,23 +32,23 @@ public class Assessment {
         return assessmentName;
     }
 
-    String getAssessmentType() {
+    public String getAssessmentType() {
         return assessmentType;
     }
 
-    String getAssessmentGoalDate() {
+    public String getAssessmentGoalDate() {
         return assessmentGoalDate;
     }
 
-    int getAssessmentNotification() {
+    public int getAssessmentNotification() {
         return assessmentNotification;
     }
 
-    void setAssessmentId(long assessmentId) {
+    public void setAssessmentId(long assessmentId) {
         this.assessmentId = assessmentId;
     }
 
-    void setCourseId(long courseId) {
+    public void setCourseId(long courseId) {
         this.courseId = courseId;
     }
 
@@ -56,11 +56,11 @@ public class Assessment {
         this.assessmentName = assessmentName;
     }
 
-    void setAssessmentType(String assessmentType) {
+    public void setAssessmentType(String assessmentType) {
         this.assessmentType = assessmentType;
     }
 
-    void setAssessmentGoalDate(String assessmentGoalDate) {
+    public void setAssessmentGoalDate(String assessmentGoalDate) {
         this.assessmentGoalDate = assessmentGoalDate;
     }
 }

@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Views;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.travis.c196_project.Data.AssessmentData;
+import com.travis.c196_project.Models.Assessment;
+import com.travis.c196_project.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Views;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -11,6 +11,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.travis.c196_project.Data.CourseData;
+import com.travis.c196_project.Data.TermData;
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.Models.Term;
+import com.travis.c196_project.R;
 
 import java.util.Calendar;
 import java.util.List;

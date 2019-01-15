@@ -1,10 +1,13 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.travis.c196_project.Models.Assessment;
+import com.travis.c196_project.Utilities.DBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ public class AssessmentData {
 
     };
 
-    Assessment createAssessment(Assessment assessment) {
+    public Assessment createAssessment(Assessment assessment) {
 
         ContentValues values;
         values = new ContentValues();
@@ -57,7 +60,7 @@ public class AssessmentData {
     }
 
 
-    void updateAssessment(Assessment assessment) {
+    public void updateAssessment(Assessment assessment) {
 
         ContentValues values;
         values = new ContentValues();
@@ -79,7 +82,7 @@ public class AssessmentData {
                 null);
     }
 
-    void deleteAssessment(long id) {
+    public void deleteAssessment(long id) {
 
         database.delete(DBHelper.ASSESSMENTS_TABLE,
                 DBHelper.ASSESSMENT_TABLE_ID_COLUMN
@@ -88,7 +91,7 @@ public class AssessmentData {
 
     }
 
-    List<Assessment> getAssessments(long courseId) {
+    public List<Assessment> getAssessments(long courseId) {
 
         List<Assessment> assessmentList = new ArrayList<>();
 

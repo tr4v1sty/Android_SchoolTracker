@@ -1,10 +1,13 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Data;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.travis.c196_project.Models.Course;
+import com.travis.c196_project.Utilities.DBHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,7 @@ public class CourseData {
             DBHelper.COURSE_MENTOR_PHONE_ONE_COLUMN,
     };
 
-    Course createCourse(Course course) {
+    public Course createCourse(Course course) {
 
         ContentValues values;
         values = new ContentValues();
@@ -84,7 +87,7 @@ public class CourseData {
     }
 
 
-    void updateCourse(Course course) {
+    public void updateCourse(Course course) {
 
         ContentValues values;
         values = new ContentValues();
@@ -120,7 +123,7 @@ public class CourseData {
                 null);
     }
 
-    void updateNotes(long id, String notesName, String notesBody) {
+    public void updateNotes(long id, String notesName, String notesBody) {
 
         ContentValues values;
         values = new ContentValues();
@@ -146,7 +149,7 @@ public class CourseData {
                 null);
     }
 
-    List<Course> getCourses(long termId) {
+    public List<Course> getCourses(long termId) {
 
         List<Course> courseList = new ArrayList<>();
 
@@ -182,7 +185,7 @@ public class CourseData {
         return courseList;
     }
 
-    Course getNotes(long courseId) {
+    public Course getNotes(long courseId) {
 
         Course course = new Course();
 

@@ -1,4 +1,4 @@
-package com.travis.c196_project;
+package com.travis.c196_project.Utilities;
 
 
 import android.app.Notification;
@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
+
+import com.travis.c196_project.Views.MainActivity;
+import com.travis.c196_project.R;
 
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
