@@ -43,23 +43,28 @@ public class AssessmentList extends ListActivity {
         lv.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
 
-                Assessment assessment = (Assessment) parent.getItemAtPosition(position);
+                viewAssessment((Assessment) parent.getItemAtPosition(position));
 
-                intent.putExtra("courseId", assessment.getCourseId());
-                intent.putExtra("assessmentId", assessment.getAssessmentId());
-                intent.putExtra("assessmentName", assessment.getAssessmentName());
-                intent.putExtra("assessmentGoalDate", assessment.getAssessmentGoalDate());
-                intent.putExtra("assessmentType", assessment.getAssessmentType());
-
-                startActivity(intent);
             }
         });
 
         if (extras != null) {
             courseId = extras.getLong("courseId");
         }
+    }
+
+    private void viewAssessment(Assessment assessment){
+
+        Intent intent = new Intent(AssessmentList.this, AssessmentDetails.class);
+
+        intent.putExtra("courseId", assessment.getCourseId());
+        intent.putExtra("assessmentId", assessment.getAssessmentId());
+        intent.putExtra("assessmentName", assessment.getAssessmentName());
+        intent.putExtra("assessmentGoalDate", assessment.getAssessmentGoalDate());
+        intent.putExtra("assessmentType", assessment.getAssessmentType());
+
+        startActivity(intent);
     }
 
 

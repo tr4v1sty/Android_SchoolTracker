@@ -46,26 +46,28 @@ public class CourseList extends ListActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent;
-                intent = new Intent(CourseList.this, CourseDetails.class);
-
-                Course course;
-                course = (Course) parent.getItemAtPosition(position);
-
-                intent.putExtra("termId", course.getCourseTermId());
-                intent.putExtra("courseId", course.getCourseId());
-                intent.putExtra("courseName", course.getCourseName());
-                intent.putExtra("courseStart", course.getCourseStart());
-                intent.putExtra("courseEnd", course.getCourseEnd());
-                intent.putExtra("courseStatus", course.getCourseStatus());
-
-                intent.putExtra("mentorName", course.getCourseMentorName());
-                intent.putExtra("mentorPhone", course.getCourseMentorPhone());
-                intent.putExtra("mentorEmail", course.getCourseMentorEmail());
-
-                startActivity(intent);
+                viewCourseList((Course) parent.getItemAtPosition(position));
             }
         });
+    }
+
+    public void viewCourseList(Course course){
+
+        Intent intent;
+        intent = new Intent(CourseList.this, CourseDetails.class);
+        intent.putExtra("termId", course.getCourseTermId());
+        intent.putExtra("courseId", course.getCourseId());
+        intent.putExtra("courseName", course.getCourseName());
+        intent.putExtra("courseStart", course.getCourseStart());
+        intent.putExtra("courseEnd", course.getCourseEnd());
+        intent.putExtra("courseStatus", course.getCourseStatus());
+
+        intent.putExtra("mentorName", course.getCourseMentorName());
+        intent.putExtra("mentorPhone", course.getCourseMentorPhone());
+        intent.putExtra("mentorEmail", course.getCourseMentorEmail());
+
+        startActivity(intent);
+
     }
 
 

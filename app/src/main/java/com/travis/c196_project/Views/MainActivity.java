@@ -46,20 +46,21 @@ public class MainActivity extends ListActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent;
-                intent = new Intent(MainActivity.this, TermDetails.class);
-
-                Term term;
-                term = (Term) parent.getItemAtPosition(position);
-
-                intent.putExtra("termId", term.getTermId());
-                intent.putExtra("termName", term.getTermName());
-                intent.putExtra("termStart", term.getTermStart());
-                intent.putExtra("termEnd", term.getTermEnd());
-
-                startActivity(intent);
+                viewTermList((Term) parent.getItemAtPosition(position));
             }
         });
+    }
+
+    public void viewTermList(Term term){
+        Intent intent;
+        intent = new Intent(MainActivity.this, TermDetails.class);
+
+        intent.putExtra("termId", term.getTermId());
+        intent.putExtra("termName", term.getTermName());
+        intent.putExtra("termStart", term.getTermStart());
+        intent.putExtra("termEnd", term.getTermEnd());
+
+        startActivity(intent);
     }
 
 

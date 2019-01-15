@@ -7,7 +7,6 @@ public class Assessment {
     private String assessmentName;
     private String assessmentType;
     private String assessmentGoalDate;
-    private int assessmentNotification;
 
     public Assessment() {
     }
@@ -41,7 +40,7 @@ public class Assessment {
     }
 
     public int getAssessmentNotification() {
-        return assessmentNotification;
+        return 1;
     }
 
     public void setAssessmentId(long assessmentId) {
