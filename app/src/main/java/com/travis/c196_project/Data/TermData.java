@@ -91,18 +91,23 @@ public class TermData {
                 null,
                 null);
 
-        if (cursor.getCount() > 0) while (cursor.moveToNext()) {
-            Term term = new Term();
-            term.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.TERM_ID_COLUMN)));
-            term.setTermName(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_NAME_COLUMN)));
-            term.setTermStart(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_START_COLUMN)));
-            term.setTermEnd(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_END_COLUMN)));
-            termList.add(term);
-        }
+        cursorGetTerm(termList, cursor);
 
         return termList;
     }
 
+    private void cursorGetTerm(List<Term> termList, Cursor cursor) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                Term term = new Term();
+                term.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.TERM_ID_COLUMN)));
+                term.setTermName(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_NAME_COLUMN)));
+                term.setTermStart(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_START_COLUMN)));
+                term.setTermEnd(cursor.getString(cursor.getColumnIndex(DBHelper.TERM_END_COLUMN)));
+                termList.add(term);
+            }
+        }
+    }
 
 
 }

@@ -164,25 +164,31 @@ public class CourseData {
                 null,
                 null);
 
-        if (cursor.getCount() > 0) while (cursor.moveToNext()) {
-            Course course = new Course();
-            course.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_ID_COLUMN)));
-            course.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_TERM_ID_COLUMN)));
-            course.setCourseName(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NAME_COLUMN)));
-            course.setCourseStart(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_START_COLUMN)));
-            course.setCourseEnd(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_END_COLUMN)));
-            course.setCourseStatus(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_STATUS_COLUMN)));
-            course.setCourseMentorName(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_ONE_COLUMN)));
-            course.setCourseMentorPhone(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_PHONE_ONE_COLUMN)));
-            course.setCourseMentorEmail(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_EMAIL_ONE_COLUMN)));
-            course.setCourseNotificationStart(cursor.getInt(cursor.getColumnIndex(DBHelper.COURSE_NOTIFICATION_START_COLUMN)));
-            course.setCourseNotificationEnd(cursor.getInt(cursor.getColumnIndex(DBHelper.COURSE_NOTIFICATION_END_COLUMN)));
-            course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TITLE_COLUMN)));
-            course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TEXT_COLUMN)));
-            courseList.add(course);
-        }
+        cursorGetCourse(courseList, cursor);
 
         return courseList;
+    }
+
+    private void cursorGetCourse(List<Course> courseList, Cursor cursor) {
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                Course course = new Course();
+                course.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_ID_COLUMN)));
+                course.setTermId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_TERM_ID_COLUMN)));
+                course.setCourseName(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NAME_COLUMN)));
+                course.setCourseStart(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_START_COLUMN)));
+                course.setCourseEnd(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_END_COLUMN)));
+                course.setCourseStatus(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_STATUS_COLUMN)));
+                course.setCourseMentorName(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_ONE_COLUMN)));
+                course.setCourseMentorPhone(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_PHONE_ONE_COLUMN)));
+                course.setCourseMentorEmail(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_MENTOR_EMAIL_ONE_COLUMN)));
+                course.setCourseNotificationStart(cursor.getInt(cursor.getColumnIndex(DBHelper.COURSE_NOTIFICATION_START_COLUMN)));
+                course.setCourseNotificationEnd(cursor.getInt(cursor.getColumnIndex(DBHelper.COURSE_NOTIFICATION_END_COLUMN)));
+                course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TITLE_COLUMN)));
+                course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TEXT_COLUMN)));
+                courseList.add(course);
+            }
+        }
     }
 
     public Course getNotes(long courseId) {
@@ -200,6 +206,12 @@ public class CourseData {
                 null,
                 null);
 
+        cursorGetNote(course, cursor);
+
+        return course;
+    }
+
+    private void cursorGetNote(Course course, Cursor cursor) {
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 course.setCourseId(cursor.getLong(cursor.getColumnIndex(DBHelper.COURSE_ID_COLUMN)));
@@ -208,7 +220,6 @@ public class CourseData {
                 course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(DBHelper.COURSE_NOTES_TEXT_COLUMN)));
             }
         }
-        return course;
     }
 
 }
