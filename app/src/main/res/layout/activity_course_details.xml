@@ -34,19 +34,19 @@
 
             <Button
                 android:id="@+id/deleteCourseButtonButton"
+                style="@android:style/Widget.DeviceDefault.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:text="DELETE"
+                android:background="@color/colorAccent"
                 android:onClick="deleteCourse"
+                android:text="DELETE"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                style="@android:style/Widget.DeviceDefault.Button"
-                android:background="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailEmail" />
 
             <Button
                 android:id="@+id/btnCourseDetailSave"
@@ -57,18 +57,18 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:background="@color/colorAccent"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
                 android:onClick="saveCourse"
                 android:text="@string/save"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailEmail" />
 
             <EditText
                 android:id="@+id/ptCourseDetailCourseName"
                 android:layout_width="315dp"
                 android:layout_height="58dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="72dp"
                 android:background="@android:color/white"
                 android:ems="10"
                 android:hint="@string/courseName"
@@ -156,7 +156,7 @@
 
             <Spinner
                 android:id="@+id/spinnerCourseDetailStatus"
-                android:layout_width="279dp"
+                android:layout_width="315dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -170,7 +170,7 @@
 
             <EditText
                 android:id="@+id/ptMentorDetailName"
-                android:layout_width="250dp"
+                android:layout_width="315dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
@@ -189,7 +189,7 @@
 
             <EditText
                 android:id="@+id/ptMentorDetailPhone"
-                android:layout_width="250dp"
+                android:layout_width="315dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
@@ -207,7 +207,7 @@
 
             <EditText
                 android:id="@+id/ptMentorDetailEmail"
-                android:layout_width="250dp"
+                android:layout_width="315dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
@@ -225,30 +225,34 @@
 
             <Button
                 android:id="@+id/btnCourseDetailManageAss"
-                android:layout_width="150dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="222dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@color/colorAccent"
                 android:text="@string/manageAssessments"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailEmail" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnCourseDetailNotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:background="@color/colorAccent"
+                android:text="@string/notes"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
-                android:text="@string/notes"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnCourseDetailSave"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toEndOf="@+id/deleteCourseButtonButton"
                 app:layout_constraintTop_toBottomOf="@+id/ptMentorDetailEmail" />
 
             <TextView
@@ -257,7 +261,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="152dp"
+                android:layout_marginTop="140dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Start Date"
@@ -273,7 +277,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="End Date"
@@ -289,7 +293,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Status"
@@ -304,7 +308,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Mentor Information"

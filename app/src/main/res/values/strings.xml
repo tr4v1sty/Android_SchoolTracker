@@ -13,7 +13,7 @@
     <string name="endDate">End Date</string>
     <string name="deleteCourse">Delete Course</string>
     <string name="courseName">Course Name</string>
-    <string name="manageAssessments">Assessments</string>
+    <string name="manageAssessments">Manage Assessments</string>
     <string name="manageMentors">Manage Mentors</string>
     <string name="notes">Notes</string>
     <string name="alert">Alert</string>

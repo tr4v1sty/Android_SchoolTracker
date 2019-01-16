@@ -29,6 +29,8 @@
         <activity android:name=".Views.AssessmentList" />
         <activity android:name=".Views.AssessmentView"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Views.TermList"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver
             android:name=".Utilities.NotificationReceiver"
