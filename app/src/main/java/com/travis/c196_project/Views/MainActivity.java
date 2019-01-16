@@ -15,15 +15,18 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_activity);
 
         viewTermsButton = findViewById(R.id.button_view_terms);
-
         viewTermsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent1 = new Intent(MainActivity.this, TermList.class);
+
                 startActivity(intent1);
 
             }

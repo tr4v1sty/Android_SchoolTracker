@@ -17,9 +17,9 @@ public class NoteView extends Activity {
 
     public void shareNote(View view) {
 
-        notesDetailString = noteDetail.getText().toString();
-
         Intent sendIntent = new Intent();
+
+        notesDetailString = noteDetail.getText().toString();
 
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, notesDetailString);
@@ -27,6 +27,21 @@ public class NoteView extends Activity {
 
         startActivity(sendIntent);
 
+    }
+
+    public void saveNote(View view) {
+
+        CourseData courseData = new CourseData(this);
+
+        notesDetailString = noteDetail.getText().toString();
+
+        courseData.open();
+
+        courseData.updateNotes(courseId, notesDetailString);
+
+        courseData.close();
+
+        finish();
     }
 
     @Override
@@ -57,19 +72,5 @@ public class NoteView extends Activity {
         noteDetail.setText(cm.getCourseNotesText());
 
         courseData.close();
-    }
-
-    public void saveNote(View view) {
-        notesDetailString = noteDetail.getText().toString();
-
-        CourseData courseData = new CourseData(this);
-
-        courseData.open();
-
-        courseData.updateNotes(courseId, notesDetailString);
-
-        courseData.close();
-
-        finish();
     }
 }

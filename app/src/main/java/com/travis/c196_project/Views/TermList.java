@@ -10,29 +10,15 @@ import com.travis.c196_project.Models.Term;
 import com.travis.c196_project.R;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class TermList extends ListActivity {
 
-    public Button addNewTermButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
-
-        addNewTermButton = findViewById(R.id.btnAddTerm);
-        addNewTermButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent addTerm;
-                addTerm = new Intent(TermList.this, TermView.class);
-
-                startActivity(addTerm);
-            }
-        });
 
         ListView lv;
         lv = getListView();
@@ -90,5 +76,12 @@ public class TermList extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    public void addTermButton(View view) {
+        Intent addTerm;
+        addTerm = new Intent(TermList.this, TermView.class);
+
+        startActivity(addTerm);
     }
 }

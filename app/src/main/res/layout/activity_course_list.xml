@@ -40,7 +40,8 @@
                 android:background="@color/colorAccent"
                 android:text="@string/add_a_new_course"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:onClick="addCourseButton"/>
 
             <ListView
                 android:id="@android:id/list"

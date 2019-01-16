@@ -17,19 +17,21 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATION_STRING_FOR_TERMS_TABLE);
-        db.execSQL(CREATION_STRING_FOR_COURSES_TABLE);
-        db.execSQL(CREATION_STRING_FOR_ASSESSMENTS_TABLE);
-    }
-
-    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TermData.TERM_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + CourseData.COURSES_TABLE);
         db.execSQL("DROP TABLE IF EXISTS " + AssessmentData.ASSESSMENTS_TABLE);
         onCreate(db);
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATION_STRING_FOR_TERMS_TABLE);
+        db.execSQL(CREATION_STRING_FOR_COURSES_TABLE);
+        db.execSQL(CREATION_STRING_FOR_ASSESSMENTS_TABLE);
+    }
+
+
 
     private static final String CREATION_STRING_FOR_TERMS_TABLE = "CREATE TABLE " +
             TermData.TERM_TABLE + " (" +

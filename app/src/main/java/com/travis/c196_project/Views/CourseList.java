@@ -10,30 +10,15 @@ import com.travis.c196_project.Models.Course;
 import com.travis.c196_project.R;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class CourseList extends ListActivity {
-    public Button addNewCourseButton;
     private long termId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
-
-        addNewCourseButton = findViewById(R.id.btnAddCourse);
-        addNewCourseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addCourse;
-                addCourse = new Intent(CourseList.this, CourseView.class);
-
-                addCourse.putExtra("termId", termId);
-
-                startActivity(addCourse);
-            }
-        });
 
         Bundle extras;
         extras = getIntent().getExtras();
@@ -96,5 +81,14 @@ public class CourseList extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    public void addCourseButton(View view) {
+        Intent addCourse;
+        addCourse = new Intent(CourseList.this, CourseView.class);
+
+        addCourse.putExtra("termId", termId);
+
+        startActivity(addCourse);
     }
 }

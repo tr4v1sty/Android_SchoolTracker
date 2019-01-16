@@ -11,30 +11,15 @@ import java.util.List;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class AssessmentList extends ListActivity {
-    public Button addNewAssessmentButton;
     private long courseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_list);
-
-        addNewAssessmentButton = findViewById(R.id.btnAddAssessment);
-        addNewAssessmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent addAssessment = new Intent(AssessmentList.this, AssessmentView.class);
-
-                addAssessment.putExtra("courseId", courseId);
-
-                startActivity(addAssessment);
-            }
-        });
-
         Bundle extras;
         extras = getIntent().getExtras();
 
@@ -96,5 +81,13 @@ public class AssessmentList extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    public void addAssessmentButton(View view) {
+        Intent addAssessment = new Intent(AssessmentList.this, AssessmentView.class);
+
+        addAssessment.putExtra("courseId", courseId);
+
+        startActivity(addAssessment);
     }
 }

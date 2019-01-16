@@ -8,8 +8,7 @@ public class Assessment {
     private String assessmentGoalDate;
     private long courseId;
 
-    public Assessment() {
-    }
+    public Assessment() { }
 
     @Override
     public String toString() {

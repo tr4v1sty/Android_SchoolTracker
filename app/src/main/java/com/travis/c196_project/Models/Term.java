@@ -7,9 +7,7 @@ public class Term {
     private String termEnd;
     private String termName;
 
-    public Term() {
-
-    }
+    public Term() { }
 
     @Override
     public String toString() {

@@ -37,7 +37,6 @@ public class AssessmentData {
             ASSESSMENT_NOTIFICATION_COLUMN,
             ASSESSMENT_TABLE_ID_COLUMN,
             ASSESSMENT_TYPE_COLUMN,
-
     };
 
     public Assessment createAssessment(Assessment assessment) {
@@ -91,7 +90,6 @@ public class AssessmentData {
                 ASSESSMENT_TABLE_ID_COLUMN
                         + " = " + id,
                 null);
-
     }
 
     public List<Assessment> getAssessments(long courseId) {

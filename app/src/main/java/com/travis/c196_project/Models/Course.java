@@ -15,9 +15,7 @@ public class Course {
     private int notificationStartDate;
     private int notificationEndDate;
 
-    public Course(){
-
-    }
+    public Course(){ }
 
     @Override
     public String toString() {
