@@ -68,13 +68,11 @@ public class CourseList extends ListActivity {
 
     }
 
-
     public void onClick(View view) {
         ArrayAdapter<Course> adapter = (ArrayAdapter<Course>) getListAdapter();
 
         adapter.notifyDataSetChanged();
     }
-
 
     @Override
     protected void onResume() {
@@ -94,7 +92,6 @@ public class CourseList extends ListActivity {
 
         setListAdapter(adapter);
     }
-
 
     @Override
     protected void onPause() {

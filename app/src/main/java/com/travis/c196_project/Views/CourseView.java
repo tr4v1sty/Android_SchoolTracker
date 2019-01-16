@@ -318,7 +318,6 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         adapterView.getItemAtPosition(position).toString();
     }
-    //Spinner
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }

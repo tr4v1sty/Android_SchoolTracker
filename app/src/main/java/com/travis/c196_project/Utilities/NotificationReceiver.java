@@ -1,6 +1,5 @@
 package com.travis.c196_project.Utilities;
 
-
 import android.support.v4.app.NotificationCompat;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -14,8 +13,10 @@ import android.app.PendingIntent;
 public class NotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
         PendingIntent intent1;
-        intent1 = PendingIntent.getActivity(context,
+        intent1 = PendingIntent.getActivity(
+                context,
                 0,
                 new Intent(context, MainActivity.class),
                 0);
@@ -29,7 +30,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         mBuilder.setContentIntent(intent1);
         mBuilder.setAutoCancel(true);
 
-        NotificationManager mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager mManager;
+        mManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         if (mManager != null) {
             mManager.notify(1, mBuilder.build());

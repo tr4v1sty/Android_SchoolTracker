@@ -1,6 +1,5 @@
 package com.travis.c196_project.Views;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -60,7 +59,6 @@ public class NoteView extends Activity {
         courseData.close();
     }
 
-
     public void saveNote(View view) {
         notesDetailString = noteDetail.getText().toString();
 
@@ -74,6 +72,4 @@ public class NoteView extends Activity {
 
         finish();
     }
-
-
 }

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="cursive"
-            android:text="TERMS"
+            android:text="@string/terms"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="@color/colorAccent" />

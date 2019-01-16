@@ -179,15 +179,12 @@ public class AssessmentView extends AppCompatActivity implements AdapterView.OnI
         assessment.setAssessmentGoalDate(assessmentGoal);
         assessment.setAssessmentType(assessmentType);
 
-
-
         AssessmentData assessmentData = new AssessmentData(this);
 
         assessmentData.open();
 
         if (assessmentId != 0) assessmentData.updateAssessment(assessment);
         else assessmentData.createAssessment(assessment);
-
 
         assessmentData.close();
 

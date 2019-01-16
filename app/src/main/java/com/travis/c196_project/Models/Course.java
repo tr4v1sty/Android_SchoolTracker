@@ -4,7 +4,6 @@ public class Course {
 
     private long courseId;
     private long termId;
-    private String courseNotesTitle;
     private String courseNotesText;
     private String courseMentorName;
     private String courseMentorPhone;
@@ -61,10 +60,6 @@ public class Course {
         return notificationEndDate;
     }
 
-    public String getCourseNotesTitle() {
-        return courseNotesTitle;
-    }
-
     public String getCourseNotesText() {
         return courseNotesText;
     }
@@ -105,10 +100,6 @@ public class Course {
         this.notificationStartDate = notificationStartDate;
     }
 
-    public void setCourseNotesTitle(String courseNotesTitle) {
-        this.courseNotesTitle = courseNotesTitle;
-    }
-
     public void setCourseNotesText(String courseNotesText) {
         this.courseNotesText = courseNotesText;
     }
@@ -132,5 +123,4 @@ public class Course {
     public void setTermId(long termId) {
         this.termId = termId;
     }
-
 }

@@ -65,7 +65,6 @@ public class TermList extends ListActivity {
 
     }
 
-
     @Override
     protected void onResume() {
 
@@ -88,11 +87,8 @@ public class TermList extends ListActivity {
         setListAdapter(adapter);
     }
 
-
     @Override
     protected void onPause() {
         super.onPause();
     }
-
-
 }

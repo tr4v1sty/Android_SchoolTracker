@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="cursive"
-                android:text="ASSESSMENTS"
+                android:text="@string/assessments"
                 android:textColor="@color/colorAccent"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display2" />

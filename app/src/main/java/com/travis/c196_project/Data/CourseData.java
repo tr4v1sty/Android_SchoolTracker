@@ -92,7 +92,6 @@ public class CourseData {
         return course;
     }
 
-
     public void updateCourse(Course course) {
 
         ContentValues values = new ContentValues();
@@ -125,8 +124,6 @@ public class CourseData {
                 COURSE_ID_COLUMN + "=" + course.getCourseId(),
                 null);
     }
-
-
 
     public void deleteCourse(long id) {
 
@@ -233,5 +230,4 @@ public class CourseData {
             }
         }
     }
-
 }

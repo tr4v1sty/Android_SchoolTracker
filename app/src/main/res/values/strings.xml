@@ -34,4 +34,18 @@
     <string name="manageAssessmentsCourses">Manage Courses</string>
     <string name="notesTitle">NOTE</string>
     <string name="delete_button">Delete</string>
+    <string name="type_of_assessment">Type of Assessment</string>
+    <string name="date_of_assessment">Date of Assessment</string>
+    <string name="assessments">ASSESSMENTS</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="status">Status</string>
+    <string name="mentor_information">Mentor Information</string>
+    <string name="courses">COURSES</string>
+    <string name="performance_assessment_abm1">Performance Assessment ABM1</string>
+    <string name="a_student_progress_tracking_application">A student progress tracking application</string>
+    <string name="c196_mobile_application_development">C196 - Mobile Application Development</string>
+    <string name="start">Start</string>
+    <string name="share_note">SHARE NOTE</string>
+    <string name="terms">TERMS</string>
 </resources>
