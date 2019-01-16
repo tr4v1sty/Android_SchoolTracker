@@ -16,7 +16,9 @@ public class TermData {
     private SQLiteDatabase database;
     private DBHelper dbHelper;
 
-    public TermData(Context context) { dbHelper = new DBHelper(context); }
+    public TermData(Context context) {
+        dbHelper = new DBHelper(context);
+    }
 
     public void open() throws SQLException { database = dbHelper.getWritableDatabase(); }
 
@@ -45,8 +47,7 @@ public class TermData {
         values.put(TERM_END_COLUMN,
                 term.getTermEnd());
 
-        long insertId;
-        insertId = database.insert(TERM_TABLE,
+        long insertId = database.insert(TERM_TABLE,
                 null, values);
 
         term.setTermId(insertId);
@@ -99,13 +100,18 @@ public class TermData {
     }
 
     private void cursorGetTerm(List<Term> termList, Cursor cursor) {
+
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+
                 Term term = new Term();
+
                 term.setTermId(cursor.getLong(cursor.getColumnIndex(TERM_ID_COLUMN)));
+
                 term.setTermName(cursor.getString(cursor.getColumnIndex(TERM_NAME_COLUMN)));
                 term.setTermStart(cursor.getString(cursor.getColumnIndex(TERM_START_COLUMN)));
                 term.setTermEnd(cursor.getString(cursor.getColumnIndex(TERM_END_COLUMN)));
+
                 termList.add(term);
             }
         }

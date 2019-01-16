@@ -15,7 +15,9 @@ public class AssessmentData {
     private SQLiteDatabase database;
     private DBHelper dbHelper;
 
-    public AssessmentData(Context context) { dbHelper = new DBHelper(context); }
+    public AssessmentData(Context context) {
+        dbHelper = new DBHelper(context);
+    }
 
     public void open() throws SQLException { database = dbHelper.getWritableDatabase(); }
 

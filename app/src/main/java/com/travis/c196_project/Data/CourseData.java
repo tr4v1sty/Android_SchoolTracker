@@ -17,7 +17,6 @@ public class CourseData {
     private DBHelper dbHelper;
 
     public CourseData (Context context) {
-
         dbHelper = new DBHelper(context);
     }
 
@@ -26,7 +25,6 @@ public class CourseData {
     public void close() { dbHelper.close(); }
 
     public static final String COURSE_NOTES_TEXT_COLUMN = "courseNotesText";
-    public static final String COURSE_NOTES_TITLE_COLUMN = "courseNotesTitle";
     public static final String COURSE_NOTIFICATION_END_COLUMN = "courseNotificationEnd";
     public static final String COURSE_NOTIFICATION_START_COLUMN = "courseNotificationStart";
     public static final String COURSE_MENTOR_EMAIL_COLUMN = "courseMentorEmailOne";
@@ -51,7 +49,6 @@ public class CourseData {
             COURSE_END_COLUMN,
 
             COURSE_NOTES_TEXT_COLUMN,
-            COURSE_NOTES_TITLE_COLUMN,
 
             COURSE_NOTIFICATION_END_COLUMN,
             COURSE_NOTIFICATION_START_COLUMN,
@@ -85,8 +82,6 @@ public class CourseData {
                 course.getNotificationStartDate());
         values.put(COURSE_NOTIFICATION_END_COLUMN,
                 course.getNotificationEndDate());
-        values.put(COURSE_NOTES_TITLE_COLUMN,
-                course.getCourseNotesTitle());
         values.put(COURSE_NOTES_TEXT_COLUMN,
                 course.getCourseNotesText());
 
@@ -122,8 +117,6 @@ public class CourseData {
                 course.getNotificationStartDate());
         values.put(COURSE_NOTIFICATION_END_COLUMN,
                 course.getNotificationEndDate());
-        values.put(COURSE_NOTES_TITLE_COLUMN,
-                course.getCourseNotesTitle());
         values.put(COURSE_NOTES_TEXT_COLUMN,
                 course.getCourseNotesText());
 
@@ -164,22 +157,29 @@ public class CourseData {
     }
 
     private void cursorGetCourse(List<Course> courseList, Cursor cursor) {
+
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+
                 Course course = new Course();
+
                 course.setCourseId(cursor.getLong(cursor.getColumnIndex(COURSE_ID_COLUMN)));
                 course.setTermId(cursor.getLong(cursor.getColumnIndex(COURSE_TERM_ID_COLUMN)));
+
                 course.setCourseName(cursor.getString(cursor.getColumnIndex(COURSE_NAME_COLUMN)));
                 course.setCourseStart(cursor.getString(cursor.getColumnIndex(COURSE_START_COLUMN)));
                 course.setCourseEnd(cursor.getString(cursor.getColumnIndex(COURSE_END_COLUMN)));
                 course.setCourseStatus(cursor.getString(cursor.getColumnIndex(COURSE_STATUS_COLUMN)));
+
                 course.setCourseMentorName(cursor.getString(cursor.getColumnIndex(COURSE_MENTOR_COLUMN)));
                 course.setCourseMentorPhone(cursor.getString(cursor.getColumnIndex(COURSE_MENTOR_PHONE_COLUMN)));
                 course.setCourseMentorEmail(cursor.getString(cursor.getColumnIndex(COURSE_MENTOR_EMAIL_COLUMN)));
+
                 course.setNotificationStartDate(cursor.getInt(cursor.getColumnIndex(COURSE_NOTIFICATION_START_COLUMN)));
                 course.setNotificationEndDate(cursor.getInt(cursor.getColumnIndex(COURSE_NOTIFICATION_END_COLUMN)));
-                course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TITLE_COLUMN)));
+
                 course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TEXT_COLUMN)));
+
                 courseList.add(course);
             }
         }
@@ -205,14 +205,12 @@ public class CourseData {
         return course;
     }
 
-    public void updateNotes(long id, String notesName, String notesBody) {
+    public void updateNotes(long id, String notesBody) {
 
         ContentValues values = new ContentValues();
 
         values.put(COURSE_ID_COLUMN,
                 id);
-        values.put(COURSE_NOTES_TITLE_COLUMN,
-                notesName);
         values.put(COURSE_NOTES_TEXT_COLUMN,
                 notesBody);
 
@@ -230,7 +228,6 @@ public class CourseData {
                 course.setCourseId(cursor.getLong(cursor.getColumnIndex(COURSE_ID_COLUMN)));
                 course.setTermId(cursor.getLong(cursor.getColumnIndex(COURSE_TERM_ID_COLUMN)));
 
-                course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TITLE_COLUMN)));
                 course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TEXT_COLUMN)));
 
             }

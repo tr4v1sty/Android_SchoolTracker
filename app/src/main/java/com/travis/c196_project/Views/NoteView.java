@@ -12,21 +12,17 @@ import com.travis.c196_project.R;
 
 public class NoteView extends Activity {
 
-    public EditText noteName;
     public EditText noteDetail;
     private long courseId;
-    String notesNameString;
     String notesDetailString;
 
     public void shareNote(View view) {
 
-        notesNameString = noteName.getText().toString();
         notesDetailString = noteDetail.getText().toString();
 
         Intent sendIntent = new Intent();
 
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, notesNameString);
         sendIntent.putExtra(Intent.EXTRA_TEXT, notesDetailString);
         sendIntent.setType("text/plain");
 
@@ -39,7 +35,6 @@ public class NoteView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        noteName = findViewById(R.id.ptNotesName);
         noteDetail = findViewById(R.id.etNotesMultiText);
 
         Bundle extras;
@@ -60,7 +55,6 @@ public class NoteView extends Activity {
         Course cm;
         cm = courseData.getNotes(courseId);
 
-        noteName.setText(cm.getCourseNotesTitle());
         noteDetail.setText(cm.getCourseNotesText());
 
         courseData.close();
@@ -68,14 +62,13 @@ public class NoteView extends Activity {
 
 
     public void saveNote(View view) {
-        notesNameString = noteName.getText().toString();
         notesDetailString = noteDetail.getText().toString();
 
         CourseData courseData = new CourseData(this);
 
         courseData.open();
 
-        courseData.updateNotes(courseId, notesNameString, notesDetailString);
+        courseData.updateNotes(courseId, notesDetailString);
 
         courseData.close();
 

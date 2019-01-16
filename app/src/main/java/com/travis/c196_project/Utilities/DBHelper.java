@@ -52,7 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     CourseData.COURSE_MENTOR_EMAIL_COLUMN + " TEXT, " +
                     CourseData.COURSE_NOTIFICATION_START_COLUMN + " INTEGER, " +
                     CourseData.COURSE_NOTIFICATION_END_COLUMN + " INTEGER, " +
-                    CourseData.COURSE_NOTES_TITLE_COLUMN + " TEXT, " +
                     CourseData.COURSE_NOTES_TEXT_COLUMN + " TEXT, " +
 
                     "FOREIGN KEY(" + CourseData.COURSE_TERM_ID_COLUMN +
