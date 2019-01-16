@@ -23,7 +23,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder;
         mBuilder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.baseline_announcement_black_18dp)
-                .setContentInfo("You have a school-related occurring today")
+                .setContentInfo("You have a school-related event occurring today")
                 .setDefaults(Notification.DEFAULT_ALL);
 
         mBuilder.setContentIntent(intent1);

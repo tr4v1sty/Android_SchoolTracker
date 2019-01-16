@@ -223,12 +223,16 @@ public class CourseData {
     }
 
     private void cursorGetNote(Course course, Cursor cursor) {
+
         if (cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+
                 course.setCourseId(cursor.getLong(cursor.getColumnIndex(COURSE_ID_COLUMN)));
                 course.setTermId(cursor.getLong(cursor.getColumnIndex(COURSE_TERM_ID_COLUMN)));
+
                 course.setCourseNotesTitle(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TITLE_COLUMN)));
                 course.setCourseNotesText(cursor.getString(cursor.getColumnIndex(COURSE_NOTES_TEXT_COLUMN)));
+
             }
         }
     }
