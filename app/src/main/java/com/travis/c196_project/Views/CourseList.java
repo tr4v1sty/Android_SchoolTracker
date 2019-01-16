@@ -20,11 +20,6 @@ public class CourseList extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
 
-        Bundle extras;
-        extras = getIntent().getExtras();
-
-        termId = extras.getLong("termId");
-
         ListView lv = getListView();
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -32,6 +27,11 @@ public class CourseList extends ListActivity {
                 viewCourseList((Course) parent.getItemAtPosition(position));
             }
         });
+
+        Bundle extras;
+        extras = getIntent().getExtras();
+
+        termId = extras.getLong("termId");
     }
 
     public void viewCourseList(Course course){
@@ -68,14 +68,16 @@ public class CourseList extends ListActivity {
 
         List<Course> listValue = courseData.getCourses(termId);
 
-        courseData.close();
-
         ArrayAdapter<Course> adapter;
         adapter = new ArrayAdapter<>(this,
                 R.layout.list_items,
                 listValue);
 
         setListAdapter(adapter);
+
+        courseData.close();
+
+
     }
 
     @Override

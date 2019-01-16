@@ -42,14 +42,6 @@ public class Assessment {
         return 1;
     }
 
-    public void setAssessmentId(long assessmentId) {
-        this.assessmentId = assessmentId;
-    }
-
-    public void setCourseId(long courseId) {
-        this.courseId = courseId;
-    }
-
     public void setAssessmentName(String assessmentName) {
         this.assessmentName = assessmentName;
     }
@@ -60,5 +52,13 @@ public class Assessment {
 
     public void setAssessmentGoalDate(String assessmentGoalDate) {
         this.assessmentGoalDate = assessmentGoalDate;
+    }
+
+    public void setAssessmentId(long assessmentId) {
+        this.assessmentId = assessmentId;
+    }
+
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
     }
 }

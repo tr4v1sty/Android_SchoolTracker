@@ -8,12 +8,12 @@ public class Course {
     private String courseMentorName;
     private String courseMentorPhone;
     private String courseMentorEmail;
+    private int notificationStartDate;
+    private int notificationEndDate;
     private String courseName;
     private String courseStart;
     private String courseEnd;
     private String courseStatus;
-    private int notificationStartDate;
-    private int notificationEndDate;
 
     public Course(){ }
 

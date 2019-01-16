@@ -63,6 +63,14 @@ public class AssessmentData {
         return assessment;
     }
 
+    public void deleteAssessment(long id) {
+
+        database.delete(ASSESSMENTS_TABLE,
+                ASSESSMENT_TABLE_ID_COLUMN
+                        + " = " + id,
+                null);
+    }
+
     public void updateAssessment(Assessment assessment) {
 
         ContentValues values = new ContentValues();
@@ -81,14 +89,6 @@ public class AssessmentData {
         database.update(ASSESSMENTS_TABLE,
                 values,
                 ASSESSMENT_TABLE_ID_COLUMN + "=" + assessment.getAssessmentId(),
-                null);
-    }
-
-    public void deleteAssessment(long id) {
-
-        database.delete(ASSESSMENTS_TABLE,
-                ASSESSMENT_TABLE_ID_COLUMN
-                        + " = " + id,
                 null);
     }
 

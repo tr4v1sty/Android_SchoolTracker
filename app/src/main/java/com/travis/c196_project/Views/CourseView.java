@@ -28,11 +28,7 @@ import android.widget.Toast;
 
 public class CourseView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private Spinner courseStatus;
-    private long termId;
-    private long courseId;
     public EditText courseName;
-
     public EditText mentorName;
     public EditText mentorPhone;
     public EditText mentorEmail;
@@ -41,6 +37,11 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
     private EditText courseEndDate;
     private DatePickerDialog.OnDateSetListener courseStartDateListener;
     private DatePickerDialog.OnDateSetListener courseEndDateListener;
+
+    private Spinner courseStatus;
+
+    private long termId;
+    private long courseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,15 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
         findViewById(R.id.btnCourseDetailManageAss).setOnClickListener(buttonClickListener);
 
         courseName = findViewById(R.id.ptCourseDetailCourseName);
-        courseStartDate = findViewById(R.id.tvCourseDetailStartDate);
-        courseEndDate = findViewById(R.id.tvCourseDetailEndDate);
-        courseStatus = findViewById(R.id.spinnerCourseDetailStatus);
         mentorName = findViewById(R.id.ptMentorDetailName);
         mentorPhone = findViewById(R.id.ptMentorDetailPhone);
         mentorEmail = findViewById(R.id.ptMentorDetailEmail);
+        courseStartDate = findViewById(R.id.tvCourseDetailStartDate);
+        courseEndDate = findViewById(R.id.tvCourseDetailEndDate);
+        courseStatus = findViewById(R.id.spinnerCourseDetailStatus);
+
+        Bundle extras;
+        extras = getIntent().getExtras();
 
         ArrayAdapter<CharSequence> adapter;
         adapter = ArrayAdapter.createFromResource(this,
@@ -66,9 +70,6 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         courseStatus.setAdapter(adapter);
         courseStatus.setOnItemSelectedListener(this);
-
-        Bundle extras;
-        extras = getIntent().getExtras();
 
         setupFields(adapter, extras);
 
@@ -323,42 +324,52 @@ public class CourseView extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void saveCourse(View view) throws ParseException {
+
         setStartAlert();
         setEndAlert();
-
-        String courseName;
-        courseName = this.courseName.getText().toString();
-        String courseStart;
-        courseStart = courseStartDate.getText().toString();
-        String courseEnd;
-        courseEnd = courseEndDate.getText().toString();
-        String courseStatus;
-        courseStatus = this.courseStatus.getSelectedItem().toString();
-        String mentorName;
-        mentorName = this.mentorName.getText().toString();
-        String mentorPhone;
-        mentorPhone = this.mentorPhone.getText().toString();
-        String mentorEmail;
-        mentorEmail = this.mentorEmail.getText().toString();
 
         final Course course = new Course();
 
         course.setTermId(termId);
         course.setCourseId(courseId);
+
+        String courseName;
+        courseName = this.courseName.getText().toString();
         course.setCourseName(courseName);
+
+        String courseStart;
+        courseStart = courseStartDate.getText().toString();
         course.setCourseStart(courseStart);
+
+        String courseEnd;
+        courseEnd = courseEndDate.getText().toString();
         course.setCourseEnd(courseEnd);
+
+        String courseStatus;
+        courseStatus = this.courseStatus.getSelectedItem().toString();
         course.setCourseStatus(courseStatus);
+
+        String mentorName;
+        mentorName = this.mentorName.getText().toString();
         course.setCourseMentorName(mentorName);
+
+        String mentorPhone;
+        mentorPhone = this.mentorPhone.getText().toString();
         course.setCourseMentorPhone(mentorPhone);
+
+        String mentorEmail;
+        mentorEmail = this.mentorEmail.getText().toString();
         course.setCourseMentorEmail(mentorEmail);
 
         CourseData courseData = new CourseData(this);
 
         courseData.open();
 
-        if (courseId == 0) courseData.createCourse(course);
-        else courseData.updateCourse(course);
+        if (courseId != 0) {
+            courseData.updateCourse(course);
+        } else {
+            courseData.createCourse(course);
+        }
 
         courseData.close();
 

@@ -159,32 +159,34 @@ public class AssessmentView extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void saveAssessment(View view) throws ParseException {
-
         setAlert();
-
-        String assessmentName;
-        assessmentName = this.assessmentName.getText().toString();
-
-        String assessmentGoal;
-        assessmentGoal = assessmentDate.getText().toString();
-
-        String assessmentType;
-        assessmentType = this.assessmentType.getSelectedItem().toString();
 
         final Assessment assessment = new Assessment();
 
         assessment.setCourseId(courseId);
         assessment.setAssessmentId(assessmentId);
+
+        String assessmentName;
+        assessmentName = this.assessmentName.getText().toString();
         assessment.setAssessmentName(assessmentName);
+
+        String assessmentGoal;
+        assessmentGoal = assessmentDate.getText().toString();
         assessment.setAssessmentGoalDate(assessmentGoal);
+
+        String assessmentType;
+        assessmentType = this.assessmentType.getSelectedItem().toString();
         assessment.setAssessmentType(assessmentType);
 
         AssessmentData assessmentData = new AssessmentData(this);
 
         assessmentData.open();
 
-        if (assessmentId != 0) assessmentData.updateAssessment(assessment);
-        else assessmentData.createAssessment(assessment);
+        if (assessmentId != 0) {
+            assessmentData.updateAssessment(assessment);
+        } else {
+            assessmentData.createAssessment(assessment);
+        }
 
         assessmentData.close();
 

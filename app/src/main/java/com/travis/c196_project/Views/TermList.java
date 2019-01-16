@@ -53,7 +53,6 @@ public class TermList extends ListActivity {
 
     @Override
     protected void onResume() {
-
         super.onResume();
 
         TermData termData = new TermData(this);
@@ -63,14 +62,16 @@ public class TermList extends ListActivity {
         List<Term> listValue;
         listValue = termData.getAllTerms();
 
-        termData.close();
-
         ArrayAdapter<Term> adapter;
         adapter = new ArrayAdapter<>(this,
                 R.layout.list_items,
                 listValue);
 
         setListAdapter(adapter);
+
+        termData.close();
+
+
     }
 
     @Override

@@ -92,6 +92,14 @@ public class CourseData {
         return course;
     }
 
+    public void deleteCourse(long id) {
+
+        database.delete(COURSES_TABLE,
+                COURSE_ID_COLUMN
+                        + " = " + id,
+                null);
+    }
+
     public void updateCourse(Course course) {
 
         ContentValues values = new ContentValues();
@@ -122,14 +130,6 @@ public class CourseData {
         database.update(COURSES_TABLE,
                 values,
                 COURSE_ID_COLUMN + "=" + course.getCourseId(),
-                null);
-    }
-
-    public void deleteCourse(long id) {
-
-        database.delete(COURSES_TABLE,
-                COURSE_ID_COLUMN
-                        + " = " + id,
                 null);
     }
 

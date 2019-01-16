@@ -67,14 +67,14 @@ public class AssessmentList extends ListActivity {
 
         List<Assessment> listValue = assessmentData.getAssessments(courseId);
 
-        assessmentData.close();
-
         ArrayAdapter<Assessment> adapter;
         adapter = new ArrayAdapter<>(this,
                 R.layout.list_items,
                 listValue);
 
         setListAdapter(adapter);
+
+        assessmentData.close();
     }
 
 

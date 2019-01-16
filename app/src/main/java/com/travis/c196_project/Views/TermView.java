@@ -182,20 +182,20 @@ public class TermView extends AppCompatActivity {
     }
 
     public void saveTerm(View view) {
-        String termName;
-        termName = this.termName.getText().toString();
-
-        String termStart;
-        termStart = termStartDate.getText().toString();
-
-        String termEnd;
-        termEnd = termEndDate.getText().toString();
-
         final Term term = new Term();
 
         term.setTermId(termId);
+
+        String termName;
+        termName = this.termName.getText().toString();
         term.setTermName(termName);
+
+        String termStart;
+        termStart = termStartDate.getText().toString();
         term.setTermStart(termStart);
+
+        String termEnd;
+        termEnd = termEndDate.getText().toString();
         term.setTermEnd(termEnd);
 
         TermData termData = new TermData(this);
@@ -205,9 +205,11 @@ public class TermView extends AppCompatActivity {
         Bundle extras;
         extras = getIntent().getExtras();
 
-        if (extras == null) termData.createTerm(term);
-        else termData.updateTerm(term);
-
+        if (extras != null) {
+            termData.updateTerm(term);
+        } else {
+            termData.createTerm(term);
+        }
 
         termData.close();
 
@@ -225,8 +227,9 @@ public class TermView extends AppCompatActivity {
         List<Course> listValue;
         listValue = courseData.getCourses(termId);
 
-        if (listValue.isEmpty()) termData.deleteTerm(termId);
-        else {
+        if (listValue.isEmpty()) {
+            termData.deleteTerm(termId);
+        } else {
             Toast.makeText(this,
                     "ERROR: You must first delete all associated courses",
                     Toast.LENGTH_LONG).show();

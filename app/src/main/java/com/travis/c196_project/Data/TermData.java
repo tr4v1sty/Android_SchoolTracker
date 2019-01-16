@@ -55,6 +55,14 @@ public class TermData {
         return term;
     }
 
+    public void deleteTerm(long id) {
+
+        database.delete(TERM_TABLE,
+                TERM_ID_COLUMN + " = " + id,
+                null);
+
+    }
+
     public void updateTerm(Term term) {
 
         ContentValues values = new ContentValues();
@@ -72,14 +80,6 @@ public class TermData {
                 values,
                 TERM_ID_COLUMN + "=" + term.getTermId(),
                 null);
-    }
-
-    public void deleteTerm(long id) {
-
-        database.delete(TERM_TABLE,
-                TERM_ID_COLUMN + " = " + id,
-                null);
-
     }
 
     public List<Term> getAllTerms() {
