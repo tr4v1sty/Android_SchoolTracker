@@ -3,7 +3,7 @@ An Android app for tracking your school schedule
 
 ### Requirements:
 * An Android phone or emulator
-* Android version 9.0 for best performance
+* Android version 9.0 or later for best performance
 
 ### Summary:
 
