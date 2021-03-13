@@ -11,6 +11,9 @@ import com.travis.c196_project.R;
 
 public class MainActivity extends Activity {
 
+    //test gradle sync 3
+    //test gradle sync 3
+
     public Button viewTermsButton;
 
     @Override

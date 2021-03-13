@@ -11,6 +11,9 @@ import com.travis.c196_project.R;
 
 public class NoteView extends Activity {
 
+    //test gradle sync 3
+    //test gradle sync 3
+
     public EditText noteDetail;
     private long courseId;
     String notesDetailString;
